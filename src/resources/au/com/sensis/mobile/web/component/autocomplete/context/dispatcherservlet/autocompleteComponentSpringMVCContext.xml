@@ -13,6 +13,7 @@
             <value>
                 @{autocomplete.comp.handler.mapping.url.prefix}/js/**/*=autocomplete.comp.getJavaScriptBundle
                 @{autocomplete.comp.handler.mapping.url.prefix}/jsmember/**/*=core.comp.getJavaScriptBundleMember
+                @{autocomplete.comp.handler.mapping.url.prefix}/urlproxy=autocomplete.comp.transparentUrlProxyingController
             </value>
         </property>
         <property name="interceptors">
@@ -24,10 +25,14 @@
         </property>
     </bean>
     
-    
     <bean id="autocomplete.comp.getJavaScriptBundle"
         parent="core.comp.abstractGetJavaScriptBundle"
         init-method="validateState">
         <property name="contextRootComponentPrefix" value="@{core.env.context.root.component.prefix}@{autocomplete.comp.name}/"/>
+    </bean>
+    
+    <bean id="autocomplete.comp.transparentUrlProxyingController" 
+        class="au.com.sensis.mobile.web.component.autocomplete.datasource.TransparentUrlProxyingController">
+        <constructor-arg index="0" ref="autocomplete.comp.httpService" />
     </bean>
 </beans>

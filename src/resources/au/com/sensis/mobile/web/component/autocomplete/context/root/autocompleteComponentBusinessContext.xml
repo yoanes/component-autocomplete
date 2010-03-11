@@ -8,12 +8,30 @@
                 http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
                 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
    
-<!--                 
-    Sample Delegate bean declaration. Note that the id convention.
+    <bean id="autocomplete.comp.httpClientFactory" class="au.com.sensis.wireless.common.utils.http.HttpClientFactory"/>
     
-    <bean id="autocomplete.autocompleteDelegate"
-            class="au.com.sensis.mobile.web.component.autocomplete.business.TemplateDelegateImpl"
-            init-method="validateState">
+    <bean id="autocomplete.comp.httpService" factory-bean="autocomplete.comp.httpClientFactory" factory-method="create">
+        <constructor-arg><value>@{autocomplete.env.proxy.host}</value></constructor-arg>
+        <constructor-arg><value>@{autocomplete.env.proxy.port}</value></constructor-arg>
+        <constructor-arg><value>@{autocomplete.env.proxy.user}</value></constructor-arg>
+        <constructor-arg><value>@{autocomplete.env.proxy.password}</value></constructor-arg>
+        <constructor-arg><ref local="autocomplete.comp.connectionManager"/></constructor-arg>
+        <constructor-arg><value>@{autocomplete.env.timeout.pool}</value></constructor-arg>
     </bean>
--->    
+
+    <bean id="autocomplete.comp.connectionManager"
+            class="org.apache.commons.httpclient.MultiThreadedHttpConnectionManager"
+            destroy-method="shutdown">
+
+        <property name="params" ref="autocomplete.comp.httpParams"/>
+    </bean>
+
+    <bean id="autocomplete.comp.httpParams"
+            class="org.apache.commons.httpclient.params.HttpConnectionManagerParams">
+
+        <property name="defaultMaxConnectionsPerHost" value="@{autocomplete.env.max.connections.perhost}"/>
+        <property name="maxTotalConnections" value="@{autocomplete.env.max.connections}"/>
+        <property name="connectionTimeout" value="@{autocomplete.env.timeout.connect}"/>
+        <property name="soTimeout" value="@{autocomplete.env.timeout.response}"/>
+    </bean>
 </beans>

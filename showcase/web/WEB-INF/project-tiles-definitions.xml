@@ -5,21 +5,24 @@
         "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-    <!-- 
-      - Project level tiles definitions. 
-      -
-      - Projects should provide their own copy of this file that defines all tiles 
-      - that they require.
-      -->
 
-    <!-- 
-      - Sample tile for the base testbed so that it can be deployed standalone without
-      - yet being customised. There is no need to retain this for projects 
-      - that use the testbed. 
-      -->
-    <definition name="testbed.home" extends="testbed.base">
-        <put-attribute name="title" value="Testbed sample page."/>    
-        <put-attribute name="body" value="/WEB-INF/view/common/jsp/testbed-sample.jsp"/>
+    <!-- ======================================================================================= -->
+    <!-- Base Layout                                                                             -->
+    <!-- ======================================================================================= -->
+
+    <definition name="autocomplete.component.showcase.base" extends="testbed.base">
+
+        <put-attribute name="title" value="autocomplete-component-showcase"/>
+    </definition>
+    
+    <!-- ======================================================================================= -->
+    <!-- Autocomplete Home.                                                                      -->
+    <!-- ======================================================================================= -->
+    
+    <definition name="autocomplete.component.showcase.home" extends="autocomplete.component.showcase.base">
+        <put-attribute name="componentSetup" value="/WEB-INF/view/common/jsp/componentSetup.jsp"/>
+        <put-attribute name="xform" value="/WEB-INF/view/autocomplete/jsp/autocompleteXform.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/view/autocomplete/jsp/autocompleteHome.jsp"/>
     </definition>
 
 </tiles-definitions>
