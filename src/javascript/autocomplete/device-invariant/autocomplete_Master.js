@@ -10,7 +10,7 @@ var AutoComplete = new Class({
 	/* minimum character before the query is sent to the URL */
 	minChar: 2,
 	/* interval between query */
-	interval: 100,
+	interval: 500,
 	/* max number of results we are interested in */
 	limit: 10,
 	/* a method to transform the returned data to the conformed/agreed json format */
@@ -22,6 +22,9 @@ var AutoComplete = new Class({
 	intervalID: null,
 	lastQuery: null,
 	UL: null,
+	
+	/* special flag for the 2nd li */
+	needClear: false,
 
 	/* backend url that will be this component's proxy */
 	_proxy_url_: '',
@@ -85,11 +88,19 @@ var AutoComplete = new Class({
 			aList.style.width = '80%';
 			aList.style.display = 'block';
 			aList.style.float = 'left';
+			
+			this.needClear = true;
 		}
 		
 		/* parse the style of border bottom to all but the last */
 		if(firstLastItem != 'last') {
 			liList.style.borderBottom = '1px solid #d4d4d4';
+		}
+		
+		/* special style for the 2nd li */
+		if(this.needClear) {
+			liList.style.clear = 'both';
+			this.needClear = false;
 		}
 		
 		liList.appendChild(aList);
@@ -114,12 +125,14 @@ var AutoComplete = new Class({
 		var qval = $(this.observe).value;
 		/* do the check */
 		if(qval.length >= this.minChar && qval != this.lastQuery && this.URL.length > 0) {
+			var finalQuery;
+			
 			/* try to format the data with preAdaptor before sending it */
 			if(this.preAdaptor != null) {
-				try { var finalQuery = this.preAdaptor(qval); }
-				catch(e) { var finalQuery = qval; }
+				try { finalQuery = this.preAdaptor(qval); }
+				catch(e) { finalQuery = qval; }
 			}
-			else var finalQuery = qval;
+			else finalQuery = qval;
 				
 			var ajax = new Request({
 				method: 'get', 
@@ -133,30 +146,36 @@ var AutoComplete = new Class({
 					else var finalResult = responseText;
 					/* parse the formatted data */
 					this.populateResult(finalResult);
-				}.bind(this)
-			}).send('url=' + encodeURIComponent(this.URL + finalQuery));		
+				}.bind(this),
+				/* log (if possible) on failure */
+				onFailure: function(responseText) {
+					try{ sensis.log(responseText); }
+					catch(e) {}
+				}
+			}).send('url=' + encodeURIComponent(this.URL + finalQuery));
+			
 			this.lastQuery = qval;
 		}
 	},
 	
 	/* parse data in json format
 	 * 
-	 * the json needs at least a "data" attribute that contains an array of strings.
+	 * the json needs at least a "suggestions" attribute that contains an array of strings.
 	 * if the data isn't in this format, you can alter it via postAdaptor
 	 */
 	populateResult: function(ajaxResponseText) {
 		if($defined(ajaxResponseText) && ajaxResponseText.length > 3) {
 			var objectList = JSON.decode(ajaxResponseText);
-			var l = objectList.data.length;
+			var l = objectList.suggestions.length;
 			if(l > 0) {
 				/* clear the old list */
 				this.dropList();
 				/* loop through the data */
 				for(var i = 0; i < l; i++) {
 					/* include the close link along with the first data */
-					if(i == 0) this.createItemList(objectList.data[i], 'first');
+					if(i == 0) this.createItemList(objectList.suggestions[i], 'first');
 					/* the last item shouldn't have any bottom border */
-					else if(i == l - 1) this.createItemList(objectList.data[i], 'last');
+					else if(i == l - 1) this.createItemList(objectList.suggestions[i], 'last');
 					else this.createItemList(objectList.data[i], '');
 				}
 				$(this.populate).style.display = 'block';
