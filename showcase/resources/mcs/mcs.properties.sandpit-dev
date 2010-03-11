@@ -1,0 +1,8 @@
+mcs.devicerepository.filepath=/app/smtestapp/sandpit-dev/autocomplete-component/devices/devices.mdpr
+mcs.policies.filepath=/app/smtestapp/sandpit-dev/autocomplete-component/policies
+
+mcs.mgrp.component.scripts.base.url=/dev/autocomplete-component-showcase/comp/
+mcs.mgrp.component.images.base.url=/dev/autocomplete-component-imageserver/
+
+mcs.cache.policies=false
+#mcs.script.asset.path=/autocomplete-component-showcase/scripts/
