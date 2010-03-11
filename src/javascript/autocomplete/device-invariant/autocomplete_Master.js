@@ -92,15 +92,15 @@ var AutoComplete = new Class({
 			this.needClear = true;
 		}
 		
+		/* special style for the 2nd li */
+		else if(this.needClear){
+			liList.style.clear = 'both';
+			this.needClear = false;
+		}
+		
 		/* parse the style of border bottom to all but the last */
 		if(firstLastItem != 'last') {
 			liList.style.borderBottom = '1px solid #d4d4d4';
-		}
-		
-		/* special style for the 2nd li */
-		if(this.needClear) {
-			liList.style.clear = 'both';
-			this.needClear = false;
 		}
 		
 		liList.appendChild(aList);
