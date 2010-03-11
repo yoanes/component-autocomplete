@@ -14,7 +14,7 @@
  --%>    
 
 <logging:logger var="logger" name="au.com.sensis.mobile.web.component.autocomplete" />
-<logging:debug logger="${logger}" message="Entering setup.tag" />
+<logging:debug logger="${logger}" message="Entering bind.tag" />
 
 <core:compMcsBasePath var="compMcsBasePath" />
 
@@ -29,7 +29,7 @@
 <core:link rel="mcs:theme"  href="${compMcsBasePath}/autocomplete/imageSizeCategory.mthm"/>
 
 <%-- Scripts for current component. --%>
-<%--<core:script src="${compMcsBasePath}/autocomplete/scripts/autocomplete-component.mscr"></core:script>--%>
+<core:script src="${compMcsBasePath}/autocomplete/scripts/autocomplete-component.mscr"></core:script>
 
 <c:if test="${not empty autocomplete}">
     <core:script name="bind-autocomplete" type="text/javascript">
@@ -40,4 +40,4 @@
     </core:script>
 </c:if>
 
-<logging:debug logger="${logger}" message="Exiting setup.tag" />
+<logging:debug logger="${logger}" message="Exiting bind.tag" />
