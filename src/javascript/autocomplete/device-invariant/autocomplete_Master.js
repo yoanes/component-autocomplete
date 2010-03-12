@@ -173,7 +173,7 @@ var AutoComplete = new Class({
 	 * if the data isn't in this format, you can alter it via postAdaptor
 	 */
 	populateResult: function(ajaxResponseText) {
-		if($defined(ajaxResponseText) && ajaxResponseText.length > 3) {
+		if($defined(ajaxResponseText)) {
 			var objectList = JSON.decode(ajaxResponseText);
 			var l = objectList.suggestions.length;
 			if(l > 0) {
