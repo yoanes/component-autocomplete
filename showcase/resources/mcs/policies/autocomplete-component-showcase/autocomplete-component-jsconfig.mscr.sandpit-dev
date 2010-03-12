@@ -32,7 +32,7 @@
             </meta-data>
             <content>
                 <embedded>
-                    <data>_AutoCompleteProxy_ = '';</data>
+                    <data>_AutoCompleteProxy_ = 'http://localhost:8080/wl-autocomplete-component-showcase/comp/autocomplete/urlproxy';</data>
                 </embedded>
             </content>
         </variant>
