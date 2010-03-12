@@ -60,9 +60,9 @@ var AutoComplete = new Class({
 
 		if(this.populate.length > 0){
 			$(this.populate).empty();
-			$(this.populate).appendChild(this.UL);
-			$(this.populate).style.display = 'none';
 		}
+		$(this.populate).appendChild(this.UL);
+		$(this.populate).style.display = 'none';
 		
 		$(this.observe).addEventListener('focus', function(){this.startObserving();}.bind(this), false);
 		$(this.observe).addEventListener('blur', function(){this.stopObserving(false);}.bind(this), false);
@@ -178,6 +178,8 @@ var AutoComplete = new Class({
 				this.dropList();
 				/* loop through the data */
 				for(var i = 0; i < l; i++) {
+					/* stop after the limit is hit */
+					if(i == this.limit) break;
 					if(i == 0) {
 						/* check if it is the only one item to display */
 						if(i == l - 1) this.createItemList(objectList.suggestions[i], 'only1');
