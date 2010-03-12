@@ -3,7 +3,7 @@
  */
 _YM_ = {};
 
-_YM_.defaultURL = "http://dyela.yellowpages.sensis.com.au/suggest/business";
+_YM_.defaultURL = "http://dyela.yellowpages.sensis.com.au/suggest/business?";
 
 _YM_.defaultPreAdaptor = function(query) {
 	return "query=" + query;
@@ -21,7 +21,7 @@ _YM_.defaultULCSS = null;
  */
 _WPM_ = {};
 
-_WPM_.defaultURL = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x";
+_WPM_.defaultURL = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?";
 	
 _WPM_.defaultPreAdaptor = function(query) {
 	return "q=" + query + "&limit=7&timestamp=1250816409097&type=businessName";
