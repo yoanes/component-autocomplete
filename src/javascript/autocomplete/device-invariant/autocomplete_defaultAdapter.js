@@ -21,10 +21,12 @@ _YM_.defaultULCSS = null;
  */
 _WPM_ = {};
 
-_WPM_.defaultURL = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?";
-	
+_WPM_.defaultURL.business = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=businessName";
+_WPM_.defaultURL.government = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=governmentName";
+_WPM_.defaultURL.residential = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=residentialName";
+
 _WPM_.defaultPreAdaptor = function(query) {
-	return "q=" + query + "&limit=7&timestamp=1250816409097&type=businessName";
+	return "q=" + query + "&limit=7&timestamp=" + new Date().getTime();
 }
 
 _WPM_.defaultPostAdaptor = function(resultText) {
