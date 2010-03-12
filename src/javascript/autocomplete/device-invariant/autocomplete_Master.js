@@ -27,7 +27,7 @@ var AutoComplete = new Class({
 	needClear: false,
 
 	/* backend url that will be this component's proxy */
-	_proxy_url_: '',
+	_proxy_url_: _AutoCompleteProxy_,
 	
 	/* default ul css that will get rendered out */
 	defaultULCSS: {
@@ -77,7 +77,8 @@ var AutoComplete = new Class({
 		aList.appendChild(document.createTextNode(liText));
 		aList.addEventListener('click', function(e) { this.choose(liText); return false; }.bind(this), false);
 		
-		if(firstLastItem == 'first') {
+		/* the first item should get the close link next to it */
+		if(firstLastItem == 'first' || firstLastItem == 'only1') {
 			var cList = new Element('a');
 			cList.href = '#';
 			cList.style.textDecoration = 'none';
@@ -87,9 +88,14 @@ var AutoComplete = new Class({
 			/* add special style */
 			aList.style.width = '80%';
 			aList.style.display = 'block';
-			aList.style.float = 'left';
+			aList.style.cssFloat = 'left';
 			
-			this.needClear = true;
+			if(firstLastItem == 'only1'){
+				/* make sure it doesn't render the bottom border if it's the only item in the list*/
+				firstLastItem == 'last';
+			}
+			/* otherwise flag the object to render a clear style on the next item */
+			else this.needClear = true;
 		}
 		
 		/* special style for the 2nd li */
@@ -172,8 +178,12 @@ var AutoComplete = new Class({
 				this.dropList();
 				/* loop through the data */
 				for(var i = 0; i < l; i++) {
-					/* include the close link along with the first data */
-					if(i == 0) this.createItemList(objectList.suggestions[i], 'first');
+					if(i == 0) {
+						/* check if it is the only one item to display */
+						if(i == l - 1) this.createItemList(objectList.suggestions[i], 'only1');
+						/* otherwise render a normal item with close link */
+						else this.createItemList(objectList.suggestions[i], 'first');
+					}
 					/* the last item shouldn't have any bottom border */
 					else if(i == l - 1) this.createItemList(objectList.suggestions[i], 'last');
 					else this.createItemList(objectList.data[i], '');
