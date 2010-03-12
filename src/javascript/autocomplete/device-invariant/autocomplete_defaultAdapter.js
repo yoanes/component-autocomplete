@@ -31,7 +31,7 @@ _WPM_.defaultPreAdaptor = function(query) {
 
 _WPM_.defaultPostAdaptor = function(resultText) {
 	/* replace any occurance of \n (new line character) with , (comma) */
-	var afterReplacement = resultText.replace(new RegExp('\n', 'g'), ",");
+	var afterReplacement = resultText.replace(new RegExp('\n', 'gm'), ",");
 	return "{'suggestions': [" + afterReplacement + "]}";
 }
 
