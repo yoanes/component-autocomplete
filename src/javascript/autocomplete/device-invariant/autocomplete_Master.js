@@ -53,7 +53,7 @@ var AutoComplete = new Class({
 		/* include the passed in css. NOTE: this will OVERWRITE the default one */
 		if($defined(ulCSS)) {
 			for(var cssAttr in ulCSS) 
-				ulList.style[cssAttr] = ulCSS.cssAttr;
+				ulList.style[cssAttr] = ulCSS[cssAttr];
 		}
 		
 		this.UL = ulList;
@@ -90,7 +90,7 @@ var AutoComplete = new Class({
 			cList.addEventListener('click', function(e) { this.dropList(); return false; }.bind(this), false);
 			
 			/* add special style */
-			aList.style.width = '90%';
+			aList.style.width = '85%';
 			aList.style.cssFloat = 'left';
 			
 			if(firstLastItem == 'only1'){
@@ -113,9 +113,8 @@ var AutoComplete = new Class({
 		}
 		
 		liList.appendChild(aList);
-		/* include the close link if necessary */
-		if(firstLastItem == 'first' || firstLastItem == 'only1')
-			liList.appendChild(cList);
+		/* include the close link if it was created */
+		if(cList) liList.appendChild(cList);
 		this.UL.appendChild(liList);
 	},
 	
