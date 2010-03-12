@@ -5,7 +5,7 @@
     <xf:instance>
         <si:instance>
 
-            <si:item name="loc">
+            <si:item name="ypmKeywords">
                 <s:property value="location" />
             </si:item>
 
