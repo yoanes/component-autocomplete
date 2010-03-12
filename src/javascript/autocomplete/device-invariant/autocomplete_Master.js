@@ -90,12 +90,12 @@ var AutoComplete = new Class({
 			cList.addEventListener('click', function(e) { this.dropList(); return false; }.bind(this), false);
 			
 			/* add special style */
-			aList.style.width = '80%';
+			aList.style.width = '90%';
 			aList.style.cssFloat = 'left';
 			
 			if(firstLastItem == 'only1'){
 				/* make sure it doesn't render the bottom border if it's the only item in the list*/
-				firstLastItem == 'last';
+				firstLastItem = 'last';
 			}
 			/* otherwise flag the object to render a clear style on the next item */
 			else this.needClear = true;
