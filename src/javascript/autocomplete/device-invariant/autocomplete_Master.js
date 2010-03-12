@@ -70,6 +70,7 @@ var AutoComplete = new Class({
 	
 	createItemList: function(liText, firstLastItem) {
 		var liList = new Element('li');	
+		liList.style.padding = '3px 8px';
 		
 		var aList = new Element('a');
 		aList.href = '#';
