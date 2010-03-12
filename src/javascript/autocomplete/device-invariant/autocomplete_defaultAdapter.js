@@ -21,9 +21,10 @@ _YM_.defaultULCSS = null;
  */
 _WPM_ = {};
 
-_WPM_.defaultURL.business = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=businessName";
-_WPM_.defaultURL.government = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=governmentName";
-_WPM_.defaultURL.residential = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=residentialName";
+_WPM_.defaultURL = {};
+_WPM_.defaultURL.business = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=businessName&";
+_WPM_.defaultURL.government = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=governmentName&";
+_WPM_.defaultURL.residential = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=residentialName&";
 
 _WPM_.defaultPreAdaptor = function(query) {
 	return "q=" + query + "&limit=7&timestamp=" + new Date().getTime();
@@ -31,7 +32,10 @@ _WPM_.defaultPreAdaptor = function(query) {
 
 _WPM_.defaultPostAdaptor = function(resultText) {
 	/* replace any occurance of \n (new line character) with , (comma) */
-	var afterReplacement = resultText.replace(new RegExp('\n', 'gm'), ",");
+	
+	var afterReplacement = resultText.replace(new RegExp('^(.*)$', 'gm'), "\"$1\",");
+	afterReplacement = afterReplacement.replace(new RegExp(',$', ''), "");
+
 	return "{'suggestions': [" + afterReplacement + "]}";
 }
 
