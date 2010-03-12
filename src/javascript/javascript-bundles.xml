@@ -2,14 +2,14 @@
 <bs:bundlesConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
     xmlns:bs="http://mobile.sensis.com.au/build-scripts"
     xsi:schemaLocation="http://mobile.sensis.com.au/build-scripts au.com.sensis.mobile.bundles.xsd">
-<!--     
+    
     <bundles basename="autocomplete-component" subpackage="autocomplete">
         <bundle name="common" abstract="true">
             <fileset dir="${src.javascript.dir}/autocomplete/device-invariant">
             </fileset>
         </bundle>
-        <bundle name="iphone" parent="common">
+        <bundle name="default" parent="common">
         </bundle>
     </bundles>
-    -->
+  
 </bs:bundlesConfig>
