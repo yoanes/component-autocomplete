@@ -11,4 +11,16 @@
     <div id="ypmSuggestions">
     
     </div>
+    
+    <xf:group model="autocompleteFormModel">
+    
+        <xf:input ref="wpmBusinessKeywords" model="autocompleteFormModel"
+                    id="wpmBusinessKeywords">
+            <xf:label>WPM Business Name Search</xf:label>
+        </xf:input>
+    </xf:group>
+    <div id="wpmBusinessSuggestions">
+    
+    </div>
+    
 </div>

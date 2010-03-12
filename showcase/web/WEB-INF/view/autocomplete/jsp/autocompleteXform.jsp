@@ -8,6 +8,9 @@
             <si:item name="ypmKeywords">
                 <s:property value="location" />
             </si:item>
+            <si:item name="wpmBusinessKeywords">
+                <s:property value="location" />
+            </si:item>
 
         </si:instance>
     </xf:instance>

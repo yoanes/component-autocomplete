@@ -3,4 +3,8 @@
 <autocomplete:bind toObserve="ypmKeywords" toPopulate="ypmSuggestions" 
     toURL="_YM_.defaultURL" preDataAdaptor="_YM_.defaultPreAdaptor" postDataAdaptor="_YM_.defaultPostAdaptor" 
     ulCSS="_YM_.defaultULCSS"/>
+    
+<autocomplete:bind toObserve="wpmBusinessKeywords" toPopulate="wpmBusinessSuggestions" 
+    toURL="_WPM_.defaultURL.business" preDataAdaptor="_WPM_.defaultPreAdaptor" postDataAdaptor="_WPM_.defaultPostAdaptor" 
+    ulCSS="_WPM_.defaultULCSS"/>
 

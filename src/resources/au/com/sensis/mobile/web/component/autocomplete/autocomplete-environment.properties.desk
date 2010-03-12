@@ -2,8 +2,8 @@
 ## ENVIRONMENT : DESK
 ########################################################
 
-env.proxy.host=
-env.proxy.port=
+env.proxy.host=161.117.238.233
+env.proxy.port=8080
 env.proxy.user=
 env.proxy.password=
 
