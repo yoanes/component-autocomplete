@@ -31,10 +31,10 @@ var AutoComplete = new Class({
 	
 	/* default ul css that will get rendered out */
 	defaultULCSS: {
-		'list-style-type': 'none', 
+		'listStyleType': 'none', 
 		'border': '1px solid #d4d4d4',
-		'padding-left': '0px',
-		'background-color': '#ffffff'
+		'paddingLeft': '0px',
+		'backgroundColor': '#ffffff'
 	},
 	
 	initialize: function(toObserve, toPopulate, toURL, preDataAdaptor, postDataAdaptor, ulCSS) {
@@ -53,7 +53,7 @@ var AutoComplete = new Class({
 		/* include the passed in css. NOTE: this will OVERWRITE the default one */
 		if($defined(ulCSS)) {
 			for(var cssAttr in ulCSS) 
-				ulList.style[cssAttr] = ulCSS[cssAttr];
+				ulList.style[cssAttr] = ulCSS.cssAttr;
 		}
 		
 		this.UL = ulList;
@@ -74,6 +74,8 @@ var AutoComplete = new Class({
 		var aList = new Element('a');
 		aList.href = '#';
 		aList.style.textDecoration = 'none';
+		aList.style.display = 'block';
+		aList.style.fontWeight = 'bold';
 		aList.appendChild(document.createTextNode(liText));
 		aList.addEventListener('click', function(e) { this.choose(liText); return false; }.bind(this), false);
 		
@@ -82,12 +84,12 @@ var AutoComplete = new Class({
 			var cList = new Element('a');
 			cList.href = '#';
 			cList.style.textDecoration = 'none';
+			cList.style.color = '#888888';
 			cList.appendChild(document.createTextNode('close'));
 			cList.addEventListener('click', function(e) { this.dropList(); return false; }.bind(this), false);
 			
 			/* add special style */
 			aList.style.width = '80%';
-			aList.style.display = 'block';
 			aList.style.cssFloat = 'left';
 			
 			if(firstLastItem == 'only1'){
@@ -111,7 +113,8 @@ var AutoComplete = new Class({
 		
 		liList.appendChild(aList);
 		/* include the close link if necessary */
-		if(includeCloseLink) liList.appendChild(cList);
+		if(firstLastItem == 'first' || firstLastItem == 'only1')
+			liList.appendChild(cList);
 		this.UL.appendChild(liList);
 	},
 	
@@ -188,7 +191,7 @@ var AutoComplete = new Class({
 					}
 					/* the last item shouldn't have any bottom border */
 					else if(i == l - 1) this.createItemList(objectList.suggestions[i], 'last');
-					else this.createItemList(objectList.data[i], '');
+					else this.createItemList(objectList.suggestions[i], '');
 				}
 				$(this.populate).style.display = 'block';
 			}
