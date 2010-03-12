@@ -32,9 +32,11 @@ _WPM_.defaultPreAdaptor = function(query) {
 
 _WPM_.defaultPostAdaptor = function(resultText) {
 	/* replace any occurance of \n (new line character) with , (comma) */
+	var pass1 = new RegExp('^(.*)$', 'gm');
+	var pass2 = new RegExp(',$', '');
 	
-	var afterReplacement = resultText.replace(new RegExp('^(.*)$', 'gm'), "\"$1\",");
-	afterReplacement = afterReplacement.replace(new RegExp(',$', ''), "");
+	var afterReplacement = resultText.replace(pass1, "\"$1\",");
+	afterReplacement = afterReplacement.replace(pass2, "");
 
 	return "{'suggestions': [" + afterReplacement + "]}";
 }
