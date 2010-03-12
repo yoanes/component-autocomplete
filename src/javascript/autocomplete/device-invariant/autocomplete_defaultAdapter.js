@@ -14,14 +14,12 @@ _YM_.defaultPreAdaptor = function(query) {
  */
 _YM_.defaultPostAdaptor = null;
 
+_YM_.defaultULCSS = null;
+
 /***************************************** 
  * WHITE DEFAULT PARAMETERS
  */
 _WPM_ = {};
-
-_WPM_.defaultPreAdaptor = function(query) {
-	return "q=" + query + "&limit=7&timestamp=1250816409097&type=businessName";
-}
 
 _WPM_.defaultURL = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x";
 	
@@ -33,4 +31,9 @@ _WPM_.defaultPostAdaptor = function(resultText) {
 	/* replace any occurance of \n (new line character) with , (comma) */
 	var afterReplacement = resultText.replace(new RegExp('\n', 'g'), ",");
 	return "{'suggestions': [" + afterReplacement + "]}";
+}
+
+_WPM_.defaultULCSS = {
+	'-webkit-border-radius':'5px',
+	'-webkit-box-shadow': '1px 1px 3px #bbbbbb'
 }
