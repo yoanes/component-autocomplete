@@ -23,4 +23,15 @@
     
     </div>
     
+    <xf:group model="autocompleteFormModel">
+    
+        <xf:input ref="locKeywords" model="autocompleteFormModel"
+                    id="locKeywords">
+            <xf:label>Location Search</xf:label>
+        </xf:input>
+    </xf:group>
+    <div id="locSuggestions">
+    
+    </div>
+    
 </div>
