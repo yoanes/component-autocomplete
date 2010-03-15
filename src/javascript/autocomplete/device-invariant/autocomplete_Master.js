@@ -155,33 +155,45 @@ var AutoComplete = new Class({
 				catch(e) { finalQuery = qval; }
 			}
 			else finalQuery = qval;
-				
-			var ajax = new Request({
-				method: 'get', 
-				url: this.maintainSession(this._proxy_url_),
-				onComplete: function(responseText) {
-					/* parse the list if any received back */
-					if(responseText.length > 0) {
-						var finalResult;
-						/* oncomplete try to parse the data with postAdaptor if possible */
-						if(this.postAdaptor != null) {
-							try { finalResult = this.postAdaptor(responseText); }
-							catch(e) { finalResult = responseText; }
-						}
-						else finalResult = responseText;
-						/* parse the formatted data */
-						this.populateResult(finalResult);
-					}
-					/* drop the list if no result is returned */
-					else this.dropList();
-				}.bind(this),
-				/* log (if possible) on failure */
-				onFailure: function(responseText) {
-					try{ sensis.log(responseText); }
-					catch(e) {}
-				}
-			}).send('url=' + encodeURIComponent(this.URL + finalQuery));
 			
+			/* if we want to define our own function instead of parsing a url
+			 * please defined the function and call the necessary methods to display
+			 * the list upon completion or failure.  
+			 * The component will handle the observation up to preAdaptor and then call the
+			 * toURL function. Essentially, you're on your own
+			 * from the point you send the data and onwards.
+			 */
+			if(this.URL instanceof Function) {
+				this.URL(finalQuery);
+			}
+			
+			else {
+				var ajax = new Request({
+					method: 'get', 
+					url: this.maintainSession(this._proxy_url_),
+					onComplete: function(responseText) {
+						/* parse the list if any received back */
+						if(responseText.length > 0) {
+							var finalResult;
+							/* oncomplete try to parse the data with postAdaptor if possible */
+							if(this.postAdaptor != null) {
+								try { finalResult = this.postAdaptor(responseText); }
+								catch(e) { finalResult = responseText; }
+							}
+							else finalResult = responseText;
+							/* parse the formatted data */
+							this.populateResult(finalResult);
+						}
+						/* drop the list if no result is returned */
+						else this.dropList();
+					}.bind(this),
+					/* log (if possible) on failure */
+					onFailure: function(responseText) {
+						try{ sensis.log(responseText); }
+						catch(e) {}
+					}
+				}).send('url=' + encodeURIComponent(this.URL + finalQuery));
+			}
 			this.lastQuery = qval;
 		}
 	},
