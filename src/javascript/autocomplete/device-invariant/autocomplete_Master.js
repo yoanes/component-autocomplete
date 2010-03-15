@@ -1,3 +1,6 @@
+AUTOCOMPLETE = {};
+AUTOCOMPLETE.instances = new Array();
+
 var AutoComplete = new Class({
 	Extends: Utilities,
 	
@@ -78,6 +81,8 @@ var AutoComplete = new Class({
 		this.clearDiv = new Element('div');
 		this.clearDiv.style.clear = 'both';
 		this.clearDiv.style.height = '0px';
+		
+		AUTOCOMPLETE.instances.push(this);
 	},
 	
 	createItemList: function(liText, firstLastItem) {
