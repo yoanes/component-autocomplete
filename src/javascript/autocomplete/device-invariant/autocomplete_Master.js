@@ -34,7 +34,8 @@ var AutoComplete = new Class({
 		'listStyleType': 'none', 
 		'border': '1px solid #d4d4d4',
 		'paddingLeft': '0px',
-		'backgroundColor': '#ffffff'
+		'backgroundColor': '#ffffff',
+		'margin': '0px'
 	},
 	
 	closeLink: null,
