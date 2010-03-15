@@ -45,3 +45,36 @@ _WPM_.defaultULCSS = {
 	'-webkit-border-radius':'5px',
 	'-webkit-box-shadow': '1px 1px 3px #bbbbbb'
 }
+
+/***************************************** 
+* DEFAULT PARAMETERS FOR LOCATION
+*/
+_LOCATION_ = {};
+
+_LOCATION_.defaultHandler = function(query, nth_instance) {
+	var geocoder = new EMS.Services.Geocoder();
+	
+	/* apparently EMS doesn't retrieve anything below 3 characters */
+	if(query.length < 3) return;
+
+	var options = {};
+	var data2Send = {};
+	data2Send.address = {};
+	data2Send.address.suburb = query;
+	
+	var finalResult = "{'suggestions': [";
+	geocoder.findLocalityByPrefix(data2Send, function(addresses){
+		var addressesLength = addresses.results.length;
+		if(addressesLength > 0) {
+			for(var i = 0; i < addressesLength; i++) {
+				var address = addresses.results[i];
+				finalResult = finalResult.concat("\"",address.suburb, address.region, ", ", address.state, "\"");
+				if(i != addressesLength -1) finalResult = finalResult.concat(",");
+			}
+			finalResult = finalResult.concat("]}");
+			AUTOCOMPLETE.instances[nth_instance].populateResult(finalResult);
+		}
+	}, options); 
+}
+
+_LOCATION_.defaulPreAdaptor = _LOCATION_.defaultPostAdaptor = _LOCATION_.defaultULCSS = null;

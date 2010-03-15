@@ -15,7 +15,7 @@ var AutoComplete = new Class({
 	/* interval between query */
 	interval: 500,
 	/* max number of results we are interested in */
-	limit: 10,
+	limit: 7,
 	/* a method to transform the returned data to the conformed/agreed json format */
 	postAdaptor: null,
 	/* a method to transform the to-be-sent data to the conformed/agreed format */
@@ -39,6 +39,8 @@ var AutoComplete = new Class({
 	
 	closeLink: null,
 	clearDiv: null,
+	
+	nth: null,
 	
 	initialize: function(toObserve, toPopulate, toURL, preDataAdaptor, postDataAdaptor, ulCSS) {
 		this.observe = toObserve;
@@ -82,7 +84,9 @@ var AutoComplete = new Class({
 		this.clearDiv.style.clear = 'both';
 		this.clearDiv.style.height = '0px';
 		
+		/* add to the global component name space */
 		AUTOCOMPLETE.instances.push(this);
+		this.nth = AUTOCOMPLETE.instances.length - 1;
 	},
 	
 	createItemList: function(liText, firstLastItem) {
@@ -161,10 +165,15 @@ var AutoComplete = new Class({
 			 * the list upon completion or failure.  
 			 * The component will handle the observation up to preAdaptor and then call the
 			 * toURL function. Essentially, you're on your own
-			 * from the point you send the data and onwards.
+			 * from the point you send the data and onwards. You can still access the 
+			 * methods from this class by calling AUTOCOMPLETE.instances[x] where x is passed
+			 * as this.nth
+			 * 
+			 * NOTE: I DON'T LIKE THIS APPROACH BUT UNFORTUNATELY IT'S THE ONLY WAY AROUND FOR
+			 * THE TIMEFRAME. IF YOU DON'T LIKE IT, GO IMPLEMENT IT YOURSELF
 			 */
 			if(this.URL instanceof Function) {
-				this.URL(finalQuery);
+				this.URL(finalQuery, this.nth);
 			}
 			
 			else {
@@ -221,7 +230,7 @@ var AutoComplete = new Class({
 						else this.createItemList(objectList.suggestions[i], 'first');
 					}
 					/* the last item shouldn't have any bottom border */
-					else if(i == l - 1) this.createItemList(objectList.suggestions[i], 'last');
+					else if(i == l - 1 || i == this.limit - 1) this.createItemList(objectList.suggestions[i], 'last');
 					else this.createItemList(objectList.suggestions[i], '');
 				}
 				$(this.populate).style.display = 'block';
