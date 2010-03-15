@@ -62,10 +62,10 @@ _LOCATION_.defaultHandler = function(query, nth_instance) {
 	data2Send.address = {};
 	data2Send.address.suburb = query;
 	
-	var finalResult = "{'suggestions': [";
 	geocoder.findLocalityByPrefix(data2Send, function(addresses){
 		var addressesLength = addresses.results.length;
 		if(addressesLength > 0) {
+			var finalResult = "{'suggestions': [";
 			for(var i = 0; i < addressesLength; i++) {
 				var address = addresses.results[i];
 				finalResult = finalResult.concat("\"",address.suburb, address.region, ", ", address.state, "\"");
