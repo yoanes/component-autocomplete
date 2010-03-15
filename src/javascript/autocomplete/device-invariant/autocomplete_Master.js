@@ -22,9 +22,6 @@ var AutoComplete = new Class({
 	intervalID: null,
 	lastQuery: null,
 	UL: null,
-	
-	/* special flag for the 2nd li */
-	needClear: false,
 
 	/* backend url that will be this component's proxy */
 	_proxy_url_: _AutoCompleteProxy_,
@@ -36,6 +33,9 @@ var AutoComplete = new Class({
 		'paddingLeft': '0px',
 		'backgroundColor': '#ffffff'
 	},
+	
+	closeLink: null,
+	clearDiv: null,
 	
 	initialize: function(toObserve, toPopulate, toURL, preDataAdaptor, postDataAdaptor, ulCSS) {
 		this.observe = toObserve;
@@ -66,9 +66,23 @@ var AutoComplete = new Class({
 		
 		$(this.observe).addEventListener('focus', function(){this.startObserving();}.bind(this), false);
 		$(this.observe).addEventListener('blur', function(){this.stopObserving(false);}.bind(this), false);
+		
+		/* create the close link */
+		this.closeLink = new Element('a');
+		this.closeLink.href = '#';
+		this.closeLink.style.textDecoration = 'none';
+		this.closeLink.style.color = '#888888';
+		this.closeLink.addEventListener('click', function(e) { this.dropList(); return false; }.bind(this), false);
+		
+		/* create the static div to clear the float left */
+		this.clearDiv = new Element('div');
+		this.clearDiv.style.clear = 'both';
+		this.clearDiv.style.height = '0px';
 	},
 	
 	createItemList: function(liText, firstLastItem) {
+		var includeCloseLink = false;
+		
 		var liList = new Element('li');	
 		liList.style.padding = '3px 8px';
 		
@@ -82,14 +96,9 @@ var AutoComplete = new Class({
 		
 		/* the first item should get the close link next to it */
 		if(firstLastItem == 'first' || firstLastItem == 'only1') {
-			var cList = new Element('a');
-			cList.href = '#';
-			cList.style.textDecoration = 'none';
-			cList.style.color = '#888888';
-			cList.appendChild(document.createTextNode('close'));
-			cList.addEventListener('click', function(e) { this.dropList(); return false; }.bind(this), false);
+			includeCloseLink = true;
 			
-			/* add special style */
+			/* add special style to the link */
 			aList.style.width = '85%';
 			aList.style.cssFloat = 'left';
 			
@@ -97,14 +106,6 @@ var AutoComplete = new Class({
 				/* make sure it doesn't render the bottom border if it's the only item in the list*/
 				firstLastItem = 'last';
 			}
-			/* otherwise flag the object to render a clear style on the next item */
-			else this.needClear = true;
-		}
-		
-		/* special style for the 2nd li */
-		else if(this.needClear){
-			liList.style.clear = 'both';
-			this.needClear = false;
 		}
 		
 		/* parse the style of border bottom to all but the last */
@@ -113,8 +114,15 @@ var AutoComplete = new Class({
 		}
 		
 		liList.appendChild(aList);
-		/* include the close link if it was created */
-		if(cList) liList.appendChild(cList);
+		/* include the close link and the clear div if needed (*essentially only happens to the first li) */
+		if(includeCloseLink) {
+			/* don't forget to create the text node. If you instantiate it only on init(), it won't display on
+			 * the 2nd or nth times of list display (1st display of list only)
+			 */
+			this.closeLink.appendChild(document.createTextNode('close'));
+			liList.appendChild(this.closeLink);
+			liList.appendChild(this.clearDiv)
+		}
 		this.UL.appendChild(liList);
 	},
 	
@@ -147,14 +155,20 @@ var AutoComplete = new Class({
 				method: 'get', 
 				url: this.maintainSession(this._proxy_url_),
 				onComplete: function(responseText) {
-					/* oncomplete try to parse the data with postAdaptor if possible */
-					if(this.postAdaptor != null) {
-						try { var finalResult = this.postAdaptor(responseText); }
-						catch(e) { var finalResult = responseText; }
+					/* parse the list if any received back */
+					if(responseText.length > 0) {
+						var finalResult;
+						/* oncomplete try to parse the data with postAdaptor if possible */
+						if(this.postAdaptor != null) {
+							try { finalResult = this.postAdaptor(responseText); }
+							catch(e) { finalResult = responseText; }
+						}
+						else finalResult = responseText;
+						/* parse the formatted data */
+						this.populateResult(finalResult);
 					}
-					else var finalResult = responseText;
-					/* parse the formatted data */
-					this.populateResult(finalResult);
+					/* drop the list if no result is returned */
+					else this.dropList();
 				}.bind(this),
 				/* log (if possible) on failure */
 				onFailure: function(responseText) {
