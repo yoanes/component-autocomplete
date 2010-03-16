@@ -3,7 +3,7 @@
  */
 _YM_ = {};
 
-_YM_.defaultURL = "http://dyela.yellowpages.sensis.com.au/suggest/business?";
+_YM_.defaultURL = "http://www.yellowpages.com.au/suggest/business?";
 
 _YM_.defaultPreAdaptor = function(query) {
 	return "query=" + query;
