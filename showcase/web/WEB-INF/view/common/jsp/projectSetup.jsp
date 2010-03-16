@@ -1,14 +1,14 @@
 <jsp:directive.include file="/WEB-INF/view/common/jsp/configInclude.jsp"/>
 
 <autocomplete:bind toObserve="ypmKeywords" toPopulate="ypmSuggestions" 
-    toURL="_YM_.defaultURL" preDataAdaptor="_YM_.defaultPreAdaptor" postDataAdaptor="_YM_.defaultPostAdaptor" 
-    ulCSS="_YM_.defaultULCSS"/>
+    toURL="_AUTOCOMPLETE_YM_.defaultURL" preDataAdaptor="_AUTOCOMPLETE_YM_.defaultPreAdaptor" postDataAdaptor="_AUTOCOMPLETE_YM_.defaultPostAdaptor" 
+    ulCSS="_AUTOCOMPLETE_YM_.defaultULCSS"/>
     
 <autocomplete:bind toObserve="wpmBusinessKeywords" toPopulate="wpmBusinessSuggestions" 
-    toURL="_WPM_.defaultURL.business" preDataAdaptor="_WPM_.defaultPreAdaptor" postDataAdaptor="_WPM_.defaultPostAdaptor" 
-    ulCSS="_WPM_.defaultULCSS"/>
+    toURL="_AUTOCOMPLETE_WPM_.defaultURL.business" preDataAdaptor="_AUTOCOMPLETE_WPM_.defaultPreAdaptor" postDataAdaptor="_AUTOCOMPLETE_WPM_.defaultPostAdaptor" 
+    ulCSS="_AUTOCOMPLETE_WPM_.defaultULCSS"/>
     
     <autocomplete:bind toObserve="locKeywords" toPopulate="locSuggestions" 
-    toURL="_LOCATION_.defaultHandler" preDataAdaptor="_LOCATION_.defaultPreAdaptor" postDataAdaptor="_LOCATION_.defaultPostAdaptor" 
-    ulCSS="_LOCATION_.defaultULCSS"/>
+    toURL="_AUTOCOMPLETE_LOCATION_.defaultHandler" preDataAdaptor="_AUTOCOMPLETE_LOCATION_.defaultPreAdaptor" postDataAdaptor="_AUTOCOMPLETE_LOCATION_.defaultPostAdaptor" 
+    ulCSS="_AUTOCOMPLETE_LOCATION_.defaultULCSS"/>
 

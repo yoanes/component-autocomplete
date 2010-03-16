@@ -59,7 +59,7 @@
               - invocations of this tag on a page. Even though the variable isn't strictly
               - used, it will be useful for debugging. 
               --%>
-            var <c:out value="${autoCompleteVarName}"/> = new AutoComplete(
+            new AutoComplete(
                 '<c:out value="${toObserve}"/>',
                 '<c:out value="${toPopulate}"/>',
                 <c:out value="${toURL}"/>,

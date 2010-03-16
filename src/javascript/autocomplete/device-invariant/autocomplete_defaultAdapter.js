@@ -1,36 +1,36 @@
 /***************************************** 
  * YELLOW DEFAULT PARAMETERS
  */
-_YM_ = {};
+_AUTOCOMPLETE_YM_ = {};
 
-_YM_.defaultURL = "http://www.yellowpages.com.au/suggest/business?";
+_AUTOCOMPLETE_YM_.defaultURL = "http://www.yellowpages.com.au/suggest/business?";
 
-_YM_.defaultPreAdaptor = function(query) {
+_AUTOCOMPLETE_YM_.defaultPreAdaptor = function(query) {
 	return "query=" + query;
 }
 
 /** the default behaviour of the autocomplete is based on YM's json data structure
  * hence YM doesn't need the default post adaptor
  */
-_YM_.defaultPostAdaptor = null;
+_AUTOCOMPLETE_YM_.defaultPostAdaptor = null;
 
-_YM_.defaultULCSS = null;
+_AUTOCOMPLETE_YM_.defaultULCSS = null;
 
 /***************************************** 
  * WHITE DEFAULT PARAMETERS
  */
-_WPM_ = {};
+_AUTOCOMPLETE_WPM_ = {};
 
-_WPM_.defaultURL = {};
-_WPM_.defaultURL.business = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=businessName&";
-_WPM_.defaultURL.government = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=governmentName&";
-_WPM_.defaultURL.residential = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=residentialName&";
+_AUTOCOMPLETE_WPM_.defaultURL = {};
+_AUTOCOMPLETE_WPM_.defaultURL.business = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=businessName&";
+_AUTOCOMPLETE_WPM_.defaultURL.government = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=governmentName&";
+_AUTOCOMPLETE_WPM_.defaultURL.residential = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=residentialName&";
 
-_WPM_.defaultPreAdaptor = function(query) {
+_AUTOCOMPLETE_WPM_.defaultPreAdaptor = function(query) {
 	return "q=" + query + "&limit=7&timestamp=" + new Date().getTime();
 }
 
-_WPM_.defaultPostAdaptor = function(resultText) {
+_AUTOCOMPLETE_WPM_.defaultPostAdaptor = function(resultText) {
 	/* replace any occurance of \n (new line character) with , (comma) */
 	var pass1 = new RegExp('^(.*)$', 'gm');
 	var pass2 = new RegExp(',$', '');
@@ -41,7 +41,7 @@ _WPM_.defaultPostAdaptor = function(resultText) {
 	return "{'suggestions': [" + afterReplacement + "]}";
 }
 
-_WPM_.defaultULCSS = {
+_AUTOCOMPLETE_WPM_.defaultULCSS = {
 	'-webkit-border-radius':'5px',
 	'-webkit-box-shadow': '1px 1px 3px #bbbbbb'
 }
@@ -49,9 +49,9 @@ _WPM_.defaultULCSS = {
 /***************************************** 
 * DEFAULT PARAMETERS FOR LOCATION
 */
-_LOCATION_ = {};
+_AUTOCOMPLETE_LOCATION_ = {};
 
-_LOCATION_.defaultHandler = function(query, nth_instance) {
+_AUTOCOMPLETE_LOCATION_.defaultHandler = function(query, nth_instance) {
 	var geocoder = new EMS.Services.Geocoder();
 	
 	/* apparently EMS doesn't retrieve anything below 3 characters */
@@ -77,4 +77,9 @@ _LOCATION_.defaultHandler = function(query, nth_instance) {
 	}, options); 
 }
 
-_LOCATION_.defaulPreAdaptor = _LOCATION_.defaultPostAdaptor = _LOCATION_.defaultULCSS = null;
+_AUTOCOMPLETE_LOCATION_.defaulPreAdaptor = _AUTOCOMPLETE_LOCATION_.defaultPostAdaptor = null;
+
+_AUTOCOMPLETE_LOCATION_.defaultULCSS = {
+	'-webkit-border-radius':'5px',
+	'-webkit-box-shadow': '1px 1px 3px #bbbbbb'
+}
