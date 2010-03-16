@@ -1,6 +1,0 @@
-==== Version 1.0.1-001 (tag: autocomplete_v1_0_1-001) ====
-
-Fixed CUI-130: Map Component - remove OpenLayers.mscr and change to use prod EMS when EMS prod drop occurs on 12 Mar 2010
-- EMS.mscr.* files for showcase now use EMS prod URL.
-
-Now depends on wl-core-component 1.0.20.
