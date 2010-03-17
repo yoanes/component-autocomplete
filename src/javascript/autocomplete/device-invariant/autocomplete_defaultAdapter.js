@@ -68,7 +68,7 @@ _AUTOCOMPLETE_LOCATION_.defaultHandler = function(query, nth_instance) {
 			var finalResult = "{'suggestions': [";
 			for(var i = 0; i < addressesLength; i++) {
 				var address = addresses.results[i];
-				finalResult = finalResult.concat("\"",address.suburb, address.region, ", ", address.state, "\"");
+				finalResult = finalResult.concat("\"",address.suburb.toLowerCase(), address.region.toLowerCase(), ", ", address.state, "\"");
 				if(i != addressesLength -1) finalResult = finalResult.concat(",");
 			}
 			finalResult = finalResult.concat("]}");
@@ -81,5 +81,6 @@ _AUTOCOMPLETE_LOCATION_.defaulPreAdaptor = _AUTOCOMPLETE_LOCATION_.defaultPostAd
 
 _AUTOCOMPLETE_LOCATION_.defaultULCSS = {
 	'-webkit-border-radius':'5px',
-	'-webkit-box-shadow': '1px 1px 3px #bbbbbb'
+	'-webkit-box-shadow': '1px 1px 3px #bbbbbb',
+	'textTransform': 'capitalize'
 }
