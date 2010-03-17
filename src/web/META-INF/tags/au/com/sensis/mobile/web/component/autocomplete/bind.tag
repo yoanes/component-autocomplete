@@ -19,6 +19,8 @@
     description="Function to apply to the raw data to adapt it to the component's format." %>
 <%@ attribute name="ulCSS" required="true"
     description="JSON object of styles to apply to the ul element for each suggestion." %>
+<%@ attribute name="includeEms" required="true"
+    description="True if you need the EMS libraries included. eg. if you are using EMS for auto completing locations." %>
 <%-- TODO: Not used for now --%>    
 <%--<%@ attribute name="maxSuggestions" required="false"
     description="Maximum number of autocomplete suggestions to display." %>--%>
@@ -30,7 +32,11 @@
 
 <%-- Setup components that we depend on. --%>
 <core:setup />
-<ems:setup />
+
+<c:if test="${includeEms}">
+    <ems:setup />
+</c:if>
+
 <util:setup />
 <logging:setup />
 
@@ -50,8 +56,8 @@
     <fmt:message key="comp.name" />
 </c:set>
 
-<core:autoIncId var="autoCompleteVarName" prefix="${componentName}" />
-<core:script name="${autoCompleteVarName}" type="text/javascript">
+<core:autoIncId var="autoCompleteScriptName" prefix="${componentName}" />
+<core:script name="${autoCompleteScriptName}" type="text/javascript">
     if(typeof(AutoComplete) != 'undefined') {
         window.addEventListener('load', function() {
             <%--

@@ -6,14 +6,20 @@
         <si:instance>
 
             <si:item name="ypmKeywords">
-                <s:property value="location" />
             </si:item>
+            
             <si:item name="wpmBusinessKeywords">
-                <s:property value="location" />
             </si:item>
+            
+            <si:item name="wpmGovernmentKeywords">
+            </si:item>
+            
+            <si:item name="wpmResidentialKeywords">
+            </si:item>
+            
 			<si:item name="locKeywords">
-                <s:property value="location" />
             </si:item>
+            
         </si:instance>
     </xf:instance>
 
