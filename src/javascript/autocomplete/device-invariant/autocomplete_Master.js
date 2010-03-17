@@ -150,6 +150,13 @@ var AutoComplete = new Class({
 	sendQuery: function() {
 		/* grab the value of the query */
 		var qval = $(this.observe).value;
+		
+		/* discard results if the value is empty */
+		if(qval.length == 0) {
+			this.dropList();
+			return;
+		}
+		
 		/* do the check */
 		if(qval.length >= this.minChar && qval != this.lastQuery && this.URL.length > 0) {
 			var finalQuery;
