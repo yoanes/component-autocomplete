@@ -43,6 +43,8 @@ var AutoComplete = new Class({
 	
 	nth: null,
 	
+	hideSuggestion: false,
+	
 	initialize: function(toObserve, toPopulate, toURL, preDataAdaptor, postDataAdaptor, ulCSS) {
 		this.observe = toObserve;
 		this.populate = toPopulate;
@@ -78,7 +80,7 @@ var AutoComplete = new Class({
 		this.closeLink.href = '#';
 		this.closeLink.style.textDecoration = 'none';
 		this.closeLink.style.color = '#888888';
-		this.closeLink.addEventListener('click', function(e) { this.dropList(); return false; }.bind(this), false);
+		this.closeLink.addEventListener('click', function(e) { this.dropList(); this.hideSuggestion = true; return false; }.bind(this), false);
 		
 		/* create the static div to clear the float left */
 		this.clearDiv = new Element('div');
@@ -86,8 +88,7 @@ var AutoComplete = new Class({
 		this.clearDiv.style.height = '0px';
 		
 		/* add to the global component name space */
-		AUTOCOMPLETE.instances.push(this);
-		this.nth = AUTOCOMPLETE.instances.length - 1;
+		this.nth = AUTOCOMPLETE.instances.push(this) - 1;
 	},
 	
 	createItemList: function(liText, firstLastItem) {
@@ -151,14 +152,16 @@ var AutoComplete = new Class({
 		/* grab the value of the query */
 		var qval = $(this.observe).value;
 		
-		/* discard results if the value is empty */
+		/* discard results if the value is empty, and restart the hideSuggestion value */
 		if(qval.length == 0) {
 			this.dropList();
+			this.hideSuggestion = false;
+			this.lastQuery = "";
 			return;
 		}
 		
 		/* do the check */
-		if(qval.length >= this.minChar && qval != this.lastQuery && this.URL.length > 0) {
+		if(!this.hideSuggestion && qval.length >= this.minChar && qval != this.lastQuery && this.URL.length > 0) {
 			var finalQuery;
 			
 			/* try to format the data with preAdaptor before sending it */
