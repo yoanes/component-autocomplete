@@ -19,8 +19,7 @@
                     <devices>
                         <device>Android-OS</device>
                         <device>Apple</device>
-                        <device>PC-Win32</device>
-                        <device>SAGEM-HomeManager</device>
+                        <device>PC</device>
                     </devices>
                 </targeted>
             </selection>
