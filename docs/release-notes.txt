@@ -1,0 +1,4 @@
+==== Version 1.1.5 (tag: autocomplete_v1_1_5) ====
+
+Initial release of component and showcase, corresponding to iteration 1.1.5 of
+the Common UI project.
