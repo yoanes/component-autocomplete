@@ -7,13 +7,7 @@
             <selection>
                 <targeted>
                     <devices>
-                        <device>LG-TU500</device>
-                        <device>LG-TU550</device>
-<!-- TODO: put this back when we know what devices we're targetting. -->                                   
-<!--                        
                         <device>Master</device>                        
-                        
--->                        
                     </devices>
                 </targeted>
             </selection>
@@ -23,13 +17,9 @@
             <selection>
                 <targeted>
                     <devices>
-                        <device>Master</device>                    
-<!-- TODO: put this back when we know what devices we're targetting. -->                     
-<!--                    
                         <device>Android-OS</device>
                         <device>Apple</device>
                         <device>PC</device>
--->                        
                     </devices>
                 </targeted>
             </selection>
