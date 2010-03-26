@@ -162,61 +162,71 @@ var AutoComplete = new Class({
 			return;
 		}
 		
-		/* do the check */
-		if(!this.hideSuggestion && qval.length >= this.minChar && qval != this.lastQuery && this.URL.length > 0) {
-			var finalQuery;
-			
-			/* try to format the data with preAdaptor before sending it */
-			if(this.preAdaptor != null) {
-				try { finalQuery = this.preAdaptor(qval); }
-				catch(e) { finalQuery = qval; }
-			}
-			else finalQuery = qval;
-			
-			/* if we want to define our own function instead of parsing a url
-			 * please defined the function and call the necessary methods to display
-			 * the list upon completion or failure.  
-			 * The component will handle the observation up to preAdaptor and then call the
-			 * toURL function. Essentially, you're on your own
-			 * from the point you send the data and onwards. You can still access the 
-			 * methods from this class by calling AUTOCOMPLETE.instances[x] where x is passed
-			 * as this.nth
-			 * 
-			 * NOTE: I DON'T LIKE THIS APPROACH BUT UNFORTUNATELY IT'S THE ONLY WAY AROUND FOR
-			 * THE TIMEFRAME. IF YOU DON'T LIKE IT, GO IMPLEMENT IT YOURSELF
-			 */
-			if(this.URL instanceof Function) {
-				this.URL(finalQuery, this.nth);
-			}
-			
-			else {
-				var ajax = new Request({
-					method: 'get', 
-					url: this.maintainSession(this._proxy_url_),
-					onComplete: function(responseText) {
-						/* parse the list if any received back */
-						if(responseText.length > 0) {
-							var finalResult;
-							/* oncomplete try to parse the data with postAdaptor if possible */
-							if(this.postAdaptor != null) {
-								try { finalResult = this.postAdaptor(responseText); }
-								catch(e) { finalResult = responseText; }
-							}
-							else finalResult = responseText;
-							/* parse the formatted data */
-							this.populateResult(finalResult);
-						}
-						/* drop the list if no result is returned */
-						else this.dropList();
-					}.bind(this),
-					/* log (if possible) on failure */
-					onFailure: function(responseText) {
-						try{ sensis.log(responseText); }
-						catch(e) {}
+		/* do the check 
+		 * don't bother to check everything else if user opt to hide the auto suggest
+		 * otherwise do the query length first becuase if it doesn't match we need to call dropList()
+		 * the other check should just determine whether we're calling the ajax request or not and not touching the list
+		 * */
+		if(!this.hideSuggestion) {
+			if(qval.length >= this.minChar){
+				if(qval != this.lastQuery && this.URL.length > 0) {
+					var finalQuery;
+					
+					/* try to format the data with preAdaptor before sending it */
+					if(this.preAdaptor != null) {
+						try { finalQuery = this.preAdaptor(qval); }
+						catch(e) { finalQuery = qval; }
 					}
-				}).send('url=' + encodeURIComponent(this.URL + finalQuery));
+					else finalQuery = qval;
+					
+					/* if we want to define our own function instead of parsing a url
+					 * please defined the function and call the necessary methods to display
+					 * the list upon completion or failure.  
+					 * The component will handle the observation up to preAdaptor and then call the
+					 * toURL function. Essentially, you're on your own
+					 * from the point you send the data and onwards. You can still access the 
+					 * methods from this class by calling AUTOCOMPLETE.instances[x] where x is passed
+					 * as this.nth
+					 * 
+					 * NOTE: I DON'T LIKE THIS APPROACH BUT UNFORTUNATELY IT'S THE ONLY WAY AROUND FOR
+					 * THE TIMEFRAME. IF YOU DON'T LIKE IT, GO IMPLEMENT IT YOURSELF
+					 */
+					if(this.URL instanceof Function) {
+						this.URL(finalQuery, this.nth);
+					}
+					
+					else {
+						var ajax = new Request({
+							method: 'get', 
+							url: this.maintainSession(this._proxy_url_),
+							onComplete: function(responseText) {
+								/* parse the list if any received back */
+								if(responseText.length > 0) {
+									var finalResult;
+									/* oncomplete try to parse the data with postAdaptor if possible */
+									if(this.postAdaptor != null) {
+										try { finalResult = this.postAdaptor(responseText); }
+										catch(e) { finalResult = responseText; }
+									}
+									else finalResult = responseText;
+									/* parse the formatted data */
+									this.populateResult(finalResult);
+								}
+								/* drop the list if no result is returned */
+								else this.dropList();
+							}.bind(this),
+							/* log (if possible) on failure */
+							onFailure: function(responseText) {
+								try{ sensis.log(responseText); }
+								catch(e) {}
+							}
+						}).send('url=' + encodeURIComponent(this.URL + finalQuery));
+					}
+					this.lastQuery = qval;
+				}
 			}
-			this.lastQuery = qval;
+			/* drop the list if the minChar condition is not met */
+			else this.dropList();
 		}
 	},
 	
