@@ -248,6 +248,11 @@ var AutoComplete = new Class({
 				}
 				$(this.populate).style.display = 'block';
 			}
+			/* drop the list if the array is empty.
+			 * this happens to the base case of yellow data format where the 
+			 * responseText length is never = 0 but the suggestions array is empty
+			 */
+			else this.dropList();
 		}
 	},
 	
