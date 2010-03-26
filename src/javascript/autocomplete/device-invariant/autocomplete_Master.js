@@ -74,6 +74,8 @@ var AutoComplete = new Class({
 		
 		$(this.observe).addEventListener('focus', function(){this.startObserving();}.bind(this), false);
 		$(this.observe).addEventListener('blur', function(){this.stopObserving(false);}.bind(this), false);
+		/* force the autocorrect off */
+		$(this.observe).setAttribute('autocorrect', 'off');
 		
 		/* create the close link */
 		this.closeLink = new Element('a');
