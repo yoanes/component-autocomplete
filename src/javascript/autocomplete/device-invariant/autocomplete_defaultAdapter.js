@@ -74,6 +74,7 @@ _AUTOCOMPLETE_LOCATION_.defaultHandler = function(query, nth_instance) {
 			finalResult = finalResult.concat("]}");
 			AUTOCOMPLETE.instances[nth_instance].populateResult(finalResult);
 		}
+		else AUTOCOMPLETE.instances[nth_instance].dropList();
 	}, options); 
 }
 
