@@ -2,8 +2,8 @@
 ## ENVIRONMENT : DEV
 ########################################################
 
-env.proxy.host=
-env.proxy.port=
+env.proxy.host=10.95.3.94
+env.proxy.port=8080
 env.proxy.user=
 env.proxy.password=
 
@@ -14,3 +14,6 @@ env.timeout.pool=10000
 # The following properties are only relevant for a connection pooling service.
 env.max.connections.perhost=20
 env.max.connections=20
+
+
+

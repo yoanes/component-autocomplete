@@ -2,8 +2,8 @@
 ## ENVIRONMENT : TST
 ########################################################
 
-env.proxy.host=
-env.proxy.port=
+env.proxy.host=10.95.3.94
+env.proxy.port=8080
 env.proxy.user=
 env.proxy.password=
 

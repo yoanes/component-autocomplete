@@ -37,7 +37,7 @@
                             <type>base-url</type>
                         </policy-reference>
                     </base>
-                    <relative>autocomplete/js/autocomplete-component-default.js</relative>
+                    <relative>autocomplete/js/autocomplete-component-default-@project.version.complete@.js</relative>
                 </url>
             </content>
         </variant>
