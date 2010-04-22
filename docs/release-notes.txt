@@ -1,16 +1,9 @@
-==== Version 1.1.8 (tag: autocomplete_v1_1_8) ====
-
-Fixed:
-- CUI-183: Autosuggest testpage -> Autosuggestion list is not displayed correctly for yellow /white keywords with special characters e.g. '&'
-    - JavaScript default adapters now ensure that query strings are URI encoded.
-
-Update Notes:
-- Should be transparent.
-
-==== Version 1.1.7 (tag: autocomplete_v1_1_7) ====
+==== Version 1.1.6-001 (tag: autocomplete_v1_1_6-001) ====
 
 Fixed:
 - CUI-223: AutoComplete - Upgrade to core-component 1.0.28 (requires device-config.xml implementation)
+- CUI-183: Autosuggest testpage -> Autosuggestion list is not displayed correctly for yellow /white keywords with special characters e.g. '&'
+    - JavaScript default adapters now ensure that query strings are URI encoded.
 
 Update notes
 - Now depends on wl-core-component 1.0.29.
