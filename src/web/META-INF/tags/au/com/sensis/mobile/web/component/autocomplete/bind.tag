@@ -7,6 +7,9 @@
 <%@ taglib prefix="util" uri="/au/com/sensis/mobile/web/component/util/util.tld"%>
 <%@ taglib prefix="logging" uri="/au/com/sensis/mobile/web/component/logging/logging.tld"%>
 
+<%@ attribute name="device" required="true"
+    type="au.com.sensis.wireless.common.volantis.devicerepository.api.Device"  
+    description="Device of the current user." %>
 <%@ attribute name="toObserve" required="true"
     description="Id of the HTML input to provide autocomplete behaviour for." %>
 <%@ attribute name="toPopulate" required="true"
@@ -28,26 +31,6 @@
 <logging:logger var="logger" name="au.com.sensis.mobile.web.component.autocomplete" />
 <logging:debug logger="${logger}" message="Entering bind.tag" />
 
-<core:compMcsBasePath var="compMcsBasePath" />
-
-<%-- Setup components that we depend on. --%>
-<core:setup />
-
-<c:if test="${includeEms}">
-    <ems:setup />
-</c:if>
-
-<util:setup />
-<logging:setup />
-
-<%-- Themes for current component. --%>
-<core:link rel="mcs:theme" href="${compMcsBasePath}/autocomplete/autocomplete.mthm" />
-<core:link rel="mcs:theme"  href="${compMcsBasePath}/autocomplete/imageSizeCategory.mthm"/>
-
-<%-- Scripts for current component. --%>
-<core:script src="${compMcsBasePath}/autocomplete/scripts/autocomplete-component-jsconfig.mscr"></core:script>
-<core:script src="${compMcsBasePath}/autocomplete/scripts/autocomplete-component.mscr"></core:script>
-
 <%-- Set the default resource bundle for the current tag file. --%>    
 <fmt:setBundle basename="au.com.sensis.mobile.web.component.autocomplete.autocomplete-component" />    
 
@@ -55,26 +38,45 @@
 <c:set var="componentName">
     <fmt:message key="comp.name" />
 </c:set>
+<core:deviceConfig var="deviceConfig" device="${device}" 
+    registryBeanName="${componentName}.comp.deviceConfigRegistry"/>
 
-<core:autoIncId var="autoCompleteScriptName" prefix="${componentName}" />
-<core:script name="${autoCompleteScriptName}" type="text/javascript">
-    if(typeof(AutoComplete) != 'undefined') {
-        window.addEventListener('load', function() {
-            <%--
-              - We generate the name of the variable we assign to since there could be multiple
-              - invocations of this tag on a page. Even though the variable isn't strictly
-              - used, it will be useful for debugging. 
-              --%>
-            new AutoComplete(
-                '<c:out value="${toObserve}"/>',
-                '<c:out value="${toPopulate}"/>',
-                <c:out value="${toURL}"/>,
-                <c:out value="${preDataAdaptor}"/>,
-                <c:out value="${postDataAdaptor}"/>,
-                <c:out value="${ulCSS}"/>
-            );
-        }, false);
-    }
-</core:script>
+<c:if test="${deviceConfig.enableAutocomplete}">
+    
+    <%-- Setup components that we depend on. --%>
+    <core:setup />
+    
+    <c:if test="${includeEms}">
+        <ems:setup />
+    </c:if>
+    
+    <util:setup />
+    <logging:setup />
+    
+    <core:compMcsBasePath var="compMcsBasePath" />
+    
+    <%-- Themes for current component: Not applicable. --%>
+    
+    <%-- Scripts for current component. --%>
+    <core:script src="${compMcsBasePath}/autocomplete/scripts/autocomplete-component-jsconfig.mscr"></core:script>
+    <core:script src="${compMcsBasePath}/autocomplete/scripts/autocomplete-component.mscr"></core:script>
+    
+    <core:autoIncId var="autoCompleteScriptName" prefix="${componentName}" />
+    <core:script name="${autoCompleteScriptName}" type="text/javascript">
+        if(typeof(AutoComplete) != 'undefined') {
+            window.addEventListener('load', function() {
+                new AutoComplete(
+                    '<c:out value="${toObserve}"/>',
+                    '<c:out value="${toPopulate}"/>',
+                    <c:out value="${toURL}"/>,
+                    <c:out value="${preDataAdaptor}"/>,
+                    <c:out value="${postDataAdaptor}"/>,
+                    <c:out value="${ulCSS}"/>
+                );
+            }, false);
+        }
+    </core:script>
+
+</c:if>
 
 <logging:debug logger="${logger}" message="Exiting bind.tag" />

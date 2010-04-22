@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:deviceConfigs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:core="http://mobile.sensis.com.au/web/component/core/device"
+    xmlns:autocomplete="http://mobile.sensis.com.au/web/component/autocomplete/device"
+    xsi:schemaLocation="http://mobile.sensis.com.au/web/component/autocomplete/device au.com.sensis.mobile.web.component.autocomplete.device.xsd
+        http://mobile.sensis.com.au/web/component/core/device au.com.sensis.mobile.web.component.core.device.xsd">
+        
+    <identifiedDeviceConfig>
+        <deviceId>Apple</deviceId>
+        
+        <deviceConfig xsi:type="autocomplete:DeviceConfig">
+            <enableAutocomplete>true</enableAutocomplete>
+        </deviceConfig>
+    </identifiedDeviceConfig>    
+    
+    <identifiedDeviceConfig>
+        <deviceId>Android-OS</deviceId>
+        
+        <deviceConfig xsi:type="autocomplete:DeviceConfig">
+            <enableAutocomplete>true</enableAutocomplete>
+        </deviceConfig>
+    </identifiedDeviceConfig>    
+    
+    <identifiedDeviceConfig>
+        <deviceId>PC</deviceId>
+        
+        <deviceConfig xsi:type="autocomplete:DeviceConfig">
+            <enableAutocomplete>true</enableAutocomplete>
+        </deviceConfig>
+    </identifiedDeviceConfig>    
+    
+    <defaultDeviceConfig xsi:type="autocomplete:DeviceConfig">
+        <enableAutocomplete>false</enableAutocomplete>
+    </defaultDeviceConfig>
+</core:deviceConfigs>

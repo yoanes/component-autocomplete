@@ -1,10 +1,18 @@
-==== Version 1.1.5 (tag: autocomplete_v1_1_5) ====
+==== Version 1.1.7 (tag: autocomplete_v1_1_7) ====
 
-Initial release of component and showcase, corresponding to iteration 1.1.5 of
-the Common UI project.
+Fixed:
+- CUI-223: AutoComplete - Upgrade to core-component 1.0.28 (requires device-config.xml implementation)
 
+Update notes
+- Now depends on wl-core-component 1.0.29.
+- bind tag now requires device attribute to be set. 
 
 ==== Version 1.1.6 (tag: autocomplete_v1_1_6) ====
 
 - Updated to use latest core so that the component supports version numbers in the js.
 - Fixed up the environment properties for dev / tst / stg & prd.
+
+==== Version 1.1.5 (tag: autocomplete_v1_1_5) ====
+
+Initial release of component and showcase, corresponding to iteration 1.1.5 of
+the Common UI project.
