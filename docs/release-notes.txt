@@ -1,3 +1,12 @@
+==== Version 1.1.8 (tag: autocomplete_v1_1_8) ====
+
+Fixed:
+- CUI-183: Autosuggest testpage -> Autosuggestion list is not displayed correctly for yellow /white keywords with special characters e.g. '&'
+    - JavaScript default adapters now ensure that query strings are URI encoded.
+
+Update Notes:
+- Should be transparent.
+
 ==== Version 1.1.7 (tag: autocomplete_v1_1_7) ====
 
 Fixed:

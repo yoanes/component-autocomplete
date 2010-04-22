@@ -6,7 +6,7 @@ _AUTOCOMPLETE_YM_ = {};
 _AUTOCOMPLETE_YM_.defaultURL = "http://www.yellowpages.com.au/suggest/business?";
 
 _AUTOCOMPLETE_YM_.defaultPreAdaptor = function(query) {
-	return "query=" + query;
+	return "query=" + encodeURIComponent(query);
 }
 
 /** the default behaviour of the autocomplete is based on YM's json data structure
@@ -27,7 +27,7 @@ _AUTOCOMPLETE_WPM_.defaultURL.government = "http://www.whitepages.com.au/wp/auto
 _AUTOCOMPLETE_WPM_.defaultURL.residential = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=residentialName&";
 
 _AUTOCOMPLETE_WPM_.defaultPreAdaptor = function(query) {
-	return "q=" + query + "&limit=7&timestamp=" + new Date().getTime();
+	return "q=" + encodeURIComponent(query) + "&limit=7&timestamp=" + new Date().getTime();
 }
 
 _AUTOCOMPLETE_WPM_.defaultPostAdaptor = function(resultText) {
@@ -60,7 +60,7 @@ _AUTOCOMPLETE_LOCATION_.defaultHandler = function(query, nth_instance) {
 	var options = {};
 	var data2Send = {};
 	data2Send.address = {};
-	data2Send.address.suburb = query;
+	data2Send.address.suburb = encodeURIComponent(query);
 	
 	geocoder.findLocalityByPrefix(data2Send, function(addresses){
 		var addressesLength = addresses.results.length;
