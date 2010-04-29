@@ -45,6 +45,8 @@ var AutoComplete = new Class({
 	
 	hideSuggestion: false,
 	
+	itemChose: false,
+	
 	initialize: function(toObserve, toPopulate, toURL, preDataAdaptor, postDataAdaptor, ulCSS) {
 		this.observe = toObserve;
 		this.populate = toPopulate;
@@ -143,6 +145,7 @@ var AutoComplete = new Class({
 		$(this.observe).value = hrefText;
 		/* update the last query so the sendQuery doesn't trigger onfocus the next time */
 		this.lastQuery = hrefText;
+		this.itemChose = true;
 		this.dropList();
 	},
 	
@@ -200,6 +203,7 @@ var AutoComplete = new Class({
 							method: 'get', 
 							url: this.maintainSession(this._proxy_url_),
 							onComplete: function(responseText) {
+								if(this.itemChose) return;
 								/* parse the list if any received back */
 								if(responseText.length > 0) {
 									var finalResult;
@@ -257,6 +261,8 @@ var AutoComplete = new Class({
 					else this.createItemList(objectList.suggestions[i], '');
 				}
 				$(this.populate).style.display = 'block';
+				/* and do scroll to the top */
+				window.scroll(0, $(this.observe).offsetTop);
 			}
 			/* drop the list if the array is empty.
 			 * this happens to the base case of yellow data format where the 
@@ -268,9 +274,7 @@ var AutoComplete = new Class({
 	
 	startObserving: function() {
 		this.intervalID = this.sendQuery.periodical(this.interval, this);
-		
-		/* and do scroll to the top */
-		window.scroll(0, $(this.observe).offsetTop);
+		this.itemChose = false;
 	},
 	
 	stopObserving: function(doDropList) { 
