@@ -268,6 +268,9 @@ var AutoComplete = new Class({
 	
 	startObserving: function() {
 		this.intervalID = this.sendQuery.periodical(this.interval, this);
+		
+		/* and do scroll to the top */
+		window.scroll(0, $(this.observe).offsetTop);
 	},
 	
 	stopObserving: function(doDropList) { 
