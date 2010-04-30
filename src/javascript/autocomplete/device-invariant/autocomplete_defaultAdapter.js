@@ -60,7 +60,7 @@ _AUTOCOMPLETE_LOCATION_.defaultHandler = function(query, nth_instance) {
 	var options = {};
 	var data2Send = {};
 	data2Send.address = {};
-	data2Send.address.suburb = encodeURIComponent(query);
+	data2Send.address.suburb = query;
 	
 	geocoder.findLocalityByPrefix(data2Send, function(addresses){
 		var addressesLength = addresses.results.length;
