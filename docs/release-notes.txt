@@ -1,3 +1,10 @@
+==== Version 1.1.6-003 (tag: autocomplete_v1_1_6-003) ====
+
+Upgrade notes:
+- Now depends on:
+
+    <dependency org="com.sensis" name="wl-core-component" rev="1.0.31" conf="default,test"/>
+
 ==== Version 1.1.6-002 (tag: autocomplete_v1_1_6-002) ====
 
 Fixed:
