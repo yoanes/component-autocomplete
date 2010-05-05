@@ -27,7 +27,7 @@ var AutoComplete = new Class({
 	UL: null,
 
 	/* backend url that will be this component's proxy */
-	_proxy_url_: _AutoCompleteProxy_,
+	proxyUrl: new String(),
 	
 	/* default ul css that will get rendered out */
 	defaultULCSS: {
@@ -47,12 +47,13 @@ var AutoComplete = new Class({
 	
 	itemChose: false,
 	
-	initialize: function(toObserve, toPopulate, toURL, preDataAdaptor, postDataAdaptor, ulCSS) {
+	initialize: function(toObserve, toPopulate, toURL, preDataAdaptor, postDataAdaptor, ulCSS, proxyUrl) {
 		this.observe = toObserve;
 		this.populate = toPopulate;
 		this.URL = toURL;
 		this.postAdaptor = postDataAdaptor;
 		this.preAdaptor = preDataAdaptor;
+		this.proxyUrl = proxyUrl;
 		
 		/* create a unnumbered list and parse the default css for it */
 		var ulList = new Element('ul');
@@ -201,7 +202,7 @@ var AutoComplete = new Class({
 					else {
 						var ajax = new Request({
 							method: 'get', 
-							url: this.maintainSession(this._proxy_url_),
+							url: this.maintainSession(this.proxyUrl),
 							onComplete: function(responseText) {
 								if(this.itemChose) return;
 								/* parse the list if any received back */

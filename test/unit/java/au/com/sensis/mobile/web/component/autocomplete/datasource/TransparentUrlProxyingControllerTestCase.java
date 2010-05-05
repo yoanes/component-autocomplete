@@ -143,6 +143,4 @@ public class TransparentUrlProxyingControllerTestCase extends AbstractJUnit4Test
     public void setMockHttpResponse(final HttpResponse mockHttpResponse) {
         this.mockHttpResponse = mockHttpResponse;
     }
-
-
 }

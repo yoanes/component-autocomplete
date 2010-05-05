@@ -22,6 +22,8 @@
     description="Function to apply to the raw data to adapt it to the component's format." %>
 <%@ attribute name="ulCSS" required="true"
     description="JSON object of styles to apply to the ul element for each suggestion." %>
+<%@ attribute name="proxy" required="true"
+    description="Http proxy to use to access the JSON endpoint, if any. Particularly useful to get around cross domain restrictions." %>
 <%@ attribute name="includeEms" required="true"
     description="True if you need the EMS libraries included. eg. if you are using EMS for auto completing locations." %>
 <%-- TODO: Not used for now --%>    
@@ -71,7 +73,8 @@
                     <c:out value="${toURL}"/>,
                     <c:out value="${preDataAdaptor}"/>,
                     <c:out value="${postDataAdaptor}"/>,
-                    <c:out value="${ulCSS}"/>
+                    <c:out value="${ulCSS}"/>,
+                    <c:out value="${proxy}"/>
                 );
             }, false);
         }

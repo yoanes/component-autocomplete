@@ -31,7 +31,10 @@
             </meta-data>
             <content>
                 <embedded>
-                    <data>_AutoCompleteProxy_ = '@env.autocomplete.proxy.url@';</data>
+                    <data>
+                        _AutoCompleteProxy_ = '@env.autocomplete.proxy.url@';
+                        _AutoCompleteProxy_YM_ = '@env.autocomplete.proxy.ym.url@';
+                    </data>
                 </embedded>
             </content>
         </variant>

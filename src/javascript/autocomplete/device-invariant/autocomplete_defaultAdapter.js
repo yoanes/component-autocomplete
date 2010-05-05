@@ -16,6 +16,8 @@ _AUTOCOMPLETE_YM_.defaultPostAdaptor = null;
 
 _AUTOCOMPLETE_YM_.defaultULCSS = null;
 
+_AUTOCOMPLETE_YM_.proxy = _AutoCompleteProxy_YM_ + "?limit=7";
+
 /***************************************** 
  * WHITE DEFAULT PARAMETERS
  */
@@ -45,6 +47,8 @@ _AUTOCOMPLETE_WPM_.defaultULCSS = {
 	'-webkit-border-radius':'5px',
 	'-webkit-box-shadow': '1px 1px 3px #bbbbbb'
 }
+
+_AUTOCOMPLETE_WPM_.proxy = _AutoCompleteProxy_;
 
 /***************************************** 
 * DEFAULT PARAMETERS FOR LOCATION
@@ -85,3 +89,6 @@ _AUTOCOMPLETE_LOCATION_.defaultULCSS = {
 	'-webkit-box-shadow': '1px 1px 3px #bbbbbb',
 	'textTransform': 'capitalize'
 }
+
+/* No proxy required for location, since we use the EMS JavaScript API instead of hitting a JSON end point ourselves.*/
+_AUTOCOMPLETE_LOCATION_.proxy = new String();

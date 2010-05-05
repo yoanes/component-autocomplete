@@ -1,3 +1,30 @@
+==== Version 1.1.6-002 (tag: autocomplete_v1_1_6-002) ====
+
+Fixed:
+- CUI-189: Autocomplete testpage -> Autosuggest list  takes long time to appear , even when user has finished typing the keyword
+    - added potential optimisation for YM. The component provides a proxy that will limit the number of results
+      returned to the client (since the Yellow datasource does not provide this functionality).
+    
+Upgrade notse:
+- Now depends on:
+
+        <dependency org="org.codehaus" name="jackson-core-asl" rev="1.2.1" conf="default"/>
+        <dependency org="org.codehaus" name="jackson-mapper-asl" rev="1.2.1" conf="default"/>
+        
+- The autocomplete:bind tag now has a mandatory proxy attribute. Sample values for each standard datasource:
+
+    YM: proxy="_AUTOCOMPLETE_YM_.proxy"
+    WPM: proxy="_AUTOCOMPLETE_WPM_.proxy"
+    Location: proxy="_AUTOCOMPLETE_LOCATION_.proxy"
+    
+- Your webapp's environment properties needs to define env.autocomplete.proxy.ym.url in addition to the
+  env.autocomplete.proxy.url that you previously specified. Sample values for a desktop environment:
+  
+    env.autocomplete.proxy.url=http://localhost:8080/wl-autocomplete-component-showcase/comp/autocomplete/urlproxy
+    env.autocomplete.proxy.ym.url=http://localhost:8080/wl-autocomplete-component-showcase/comp/autocomplete/yellowurlproxy
+      
+  ie. /comp/autocomplete/urlproxy and /comp/autocomplete/yellowurlproxy are relative to the webapp's context root.
+    
 ==== Version 1.1.6-001 (tag: autocomplete_v1_1_6-001) ====
 
 Fixed:

@@ -19,7 +19,7 @@
                     <devices>
                         <device>Android-OS</device>
                         <device>Apple</device>
-                        <device>PC-Win32</device>
+                        <device>PC</device>
                         <device>SAGEM-HomeManager</device>
                     </devices>
                 </targeted>
@@ -32,7 +32,10 @@
             </meta-data>
             <content>
                 <embedded>
-                    <data>_AutoCompleteProxy_ = 'http://localhost:8080/wl-autocomplete-component-showcase/comp/autocomplete/urlproxy';</data>
+                    <data>
+                        _AutoCompleteProxy_ = 'http://localhost:8080/wl-autocomplete-component-showcase/comp/autocomplete/urlproxy';
+                        _AutoCompleteProxy_YM_ = 'http://localhost:8080/wl-autocomplete-component-showcase/comp/autocomplete/yellowurlproxy';
+                    </data>
                 </embedded>
             </content>
         </variant>
