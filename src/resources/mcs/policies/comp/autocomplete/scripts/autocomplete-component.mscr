@@ -7,7 +7,7 @@
             <selection>
                 <targeted>
                     <devices>
-                        <device>Master</device>                        
+                        <device>Master</device>
                     </devices>
                 </targeted>
             </selection>
@@ -17,6 +17,7 @@
             <selection>
                 <targeted>
                     <devices>
+                        <device>Android-Emulator</device>
                         <device>Android-OS</device>
                         <device>Apple</device>
                         <device>PC</device>
