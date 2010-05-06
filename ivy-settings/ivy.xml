@@ -144,7 +144,7 @@
         <!--
           - Dependencies on components.
           -->
-        <dependency org="com.sensis" name="wl-core-component" rev="1.0.31" conf="default,test"/>
+        <dependency org="com.sensis" name="wl-core-component" rev="1.0.32" conf="default,test"/>
         <dependency org="com.sensis" name="wl-webapp-testbed" rev="1.0.7" conf="showcase->default"/>        
     </dependencies>
 </ivy-module>
