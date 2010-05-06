@@ -77,13 +77,16 @@ var AutoComplete = new Class({
 		
 		$(this.observe).addEventListener('focus', function(){this.startObserving();}.bind(this), false);
 		$(this.observe).addEventListener('blur', function(){this.stopObserving(false);}.bind(this), false);
-		/* force the autocorrect off */
+		
+		/* force the autocorrect/autocomplete off */
 		$(this.observe).setAttribute('autocorrect', 'off');
+		$(this.observe).setAttribute('autocomplete', 'off');
 		
 		/* create the close link */
 		this.closeLink = new Element('a');
-		this.closeLink.href = '#';
+		this.closeLink.href = 'javascript:void(0)';
 		this.closeLink.style.textDecoration = 'none';
+		this.closeLink.style.textTransform = 'lowercase';
 		this.closeLink.style.color = '#888888';
 		this.closeLink.addEventListener('click', function(e) { this.dropList(); this.hideSuggestion = true; return false; }.bind(this), false);
 		
@@ -103,7 +106,7 @@ var AutoComplete = new Class({
 		liList.style.padding = '3px 8px';
 		
 		var aList = new Element('a');
-		aList.href = '#';
+		aList.href = 'javascript:void(0)';
 		aList.style.textDecoration = 'none';
 		aList.style.display = 'block';
 		aList.style.fontWeight = 'bold';
@@ -200,7 +203,7 @@ var AutoComplete = new Class({
 					}
 					
 					else {
-						var ajax = new Request({
+						var ajax = new MobileRequest({
 							method: 'get', 
 							url: this.maintainSession(this.proxyUrl),
 							onComplete: function(responseText) {
@@ -262,8 +265,6 @@ var AutoComplete = new Class({
 					else this.createItemList(objectList.suggestions[i], '');
 				}
 				$(this.populate).style.display = 'block';
-				/* and do scroll to the top */
-				window.scroll(0, $(this.observe).offsetTop);
 			}
 			/* drop the list if the array is empty.
 			 * this happens to the base case of yellow data format where the 
