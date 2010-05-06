@@ -1,3 +1,25 @@
+==== Version 1.1.7 (tag: autocomplete_v1_1_7) ====
+
+Fixed:
+- [CUI-183] Autosuggest testpage -> Autosuggestion list is not displayed correctly for yellow /white keywords with special characters e.g. '&'
+- [CUI-188] Autocomplete testpage -> Autosuggest list does not disappear when invalid characters are entered (Yellow & Location search only)
+- [CUI-189] Autocomplete testpage -> Autosuggest list takes long time to appear , even when user has finished typing the keyword
+- [CUI-190] Autocomplete testpage -> Appropriate autocomplete list is not displayed for certain Yellow keywords
+- [CUI-192] Autocomplete testpage -> Autosuggest list does not appear on HTC desire (Android device)
+- [CUI-194] Autocomplete testpage -> Appropriate autocomplete list is not displayed for certain Location keywords
+- [CUI-196] Autocomplete testpage -> SEX10- > Zoom controls (phone specific) are displayed as user tries to scroll down the autosuggest list
+- [CUI-198] Autocomplete testpage -> Autosuggestion of keywords provided by Android devices can be removed
+- [CUI-204] Autocomplete testpage -> Display of autocomplete list does not work on SEX10 in horizontal view (tilt phone)
+- [CUI-206] Autocomplete testpage -> Autocomplete list appears zoomed-in , on iphone /itouch in horizontal screen mode (turn phone)
+- [CUI-207] Autocomplete testpage -> 1st keyword appears smaller in font size than the rest , on iphone /itouch in horizontal screen mode (turn phone)
+- [CUI-249] Auto Complete should scroll to top of screen on field focus
+- [CUI-253] Autocomplete testpage -> Selection of a keyword from autocomplete list , takes user to top of page
+
+Upgrade notes:
+- Now depends on:
+
+    <dependency org="com.sensis" name="wl-core-component" rev="1.0.32" conf="default,test"/>
+
 ==== Version 1.1.6-003 (tag: autocomplete_v1_1_6-003) ====
 
 Upgrade notes:
