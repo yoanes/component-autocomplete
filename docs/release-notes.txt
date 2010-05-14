@@ -1,3 +1,13 @@
+==== Version 1.1.8 (tag: autocomplete_v1_1_8) ====
+
+Fixed:
+- CUI-249 Auto Complete should scroll to top of screen on field focus
+    - implemented compromise solution for now: enabled for android but disabled for iPhone.  
+    
+- Also now depends on:
+
+    <dependency org="com.sensis" name="wl-build-scripts" rev="1.0.11" conf="buildBootstrap->default" />    
+
 ==== Version 1.1.7 (tag: autocomplete_v1_1_7) ====
 
 Fixed:
