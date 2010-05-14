@@ -1,7 +1,7 @@
 AUTOCOMPLETE = {};
 AUTOCOMPLETE.instances = new Array();
 
-var AutoComplete = new Class({
+var AutoCompletePrototype = new Class({
 	Extends: Utilities,
 	
 	/* id of the field to be observerd */
@@ -265,6 +265,8 @@ var AutoComplete = new Class({
 					else this.createItemList(objectList.suggestions[i], '');
 				}
 				$(this.populate).style.display = 'block';
+				/* scroll to top */
+				this.forceFieldToTop();
 			}
 			/* drop the list if the array is empty.
 			 * this happens to the base case of yellow data format where the 

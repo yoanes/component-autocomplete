@@ -17,8 +17,6 @@
             <selection>
                 <targeted>
                     <devices>
-                        <device>Android-Emulator</device>
-                        <device>Android-OS</device>
                         <device>Apple</device>
                         <device>PC</device>
                     </devices>
@@ -39,6 +37,34 @@
                         </policy-reference>
                     </base>
                     <relative>autocomplete/js/autocomplete-component-default-@project.version.complete@.js</relative>
+                </url>
+            </content>
+        </variant>
+        <variant>
+            <type>script</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>Android-Emulator</device>
+                        <device>Android-OS</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <meta-data>
+                <script>
+                    <encoding>javascript</encoding>
+                    <character-set>utf-8</character-set>
+                </script>
+            </meta-data>
+            <content>
+                <url>
+                    <base>
+                        <policy-reference>
+                            <name>/comp/autocomplete/autocomplete-scripts.mgrp</name>
+                            <type>base-url</type>
+                        </policy-reference>
+                    </base>
+                    <relative>autocomplete/js/autocomplete-component-android-@project.version.complete@.js</relative>
                 </url>
             </content>
         </variant>

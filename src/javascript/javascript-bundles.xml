@@ -9,6 +9,12 @@
             </fileset>
         </bundle>
         <bundle name="default" parent="common">
+            <fileset dir="${src.javascript.dir}/autocomplete/device-variant/default">
+            </fileset>
+        </bundle>
+         <bundle name="android" parent="common">
+            <fileset dir="${src.javascript.dir}/autocomplete/device-variant/android-os">
+            </fileset>
         </bundle>
     </bundles>
   
