@@ -1,0 +1,10 @@
+# Project level environment properties. 
+#
+# Projects should set platform dependent properties here if they wish to add additional environment 
+# properties to the default org.springframework.beans.factory.config.PropertyPlaceholderConfigurer.
+
+env.autocomplete.proxy.url=http://localhost:8080/wl-autocomplete-component-showcase/comp/autocomplete/urlproxy
+env.autocomplete.proxy.ym.url=http://localhost:8080/wl-autocomplete-component-showcase/comp/autocomplete/yellowurlproxy
+
+env.ems.service.js=http://ems.whereis.com/v1/web/js/ems/EMS.js?profile=mobi&amp;token=
+env.ems.token=4316381136292159452
