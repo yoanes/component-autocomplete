@@ -20,6 +20,8 @@
     description="Function to apply to the observed field input before appending it to the toURL." %>
 <%@ attribute name="postDataAdaptor" required="true"
     description="Function to apply to the raw data to adapt it to the component's format." %>
+<%@ attribute name="minChar" required="true"
+    description="Minimum character needed before the autocomplete starts giving out suggestions." %>
 <%@ attribute name="ulCSS" required="true"
     description="JSON object of styles to apply to the ul element for each suggestion." %>
 <%@ attribute name="proxy" required="true"
@@ -73,6 +75,7 @@
                     <c:out value="${toURL}"/>,
                     <c:out value="${preDataAdaptor}"/>,
                     <c:out value="${postDataAdaptor}"/>,
+                    <c:out value="${minChar}"/>,
                     <c:out value="${ulCSS}"/>,
                     <c:out value="${proxy}"/>
                 );

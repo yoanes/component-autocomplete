@@ -47,14 +47,17 @@ var AutoCompletePrototype = new Class({
 	
 	itemChose: false,
 	
-	initialize: function(toObserve, toPopulate, toURL, preDataAdaptor, postDataAdaptor, ulCSS, proxyUrl) {
+	initialize: function(toObserve, toPopulate, toURL, preDataAdaptor, postDataAdaptor, minChar, ulCSS, proxyUrl) {
 		this.observe = toObserve;
 		this.populate = toPopulate;
 		this.URL = toURL;
 		this.postAdaptor = postDataAdaptor;
 		this.preAdaptor = preDataAdaptor;
-		this.proxyUrl = proxyUrl;
 		
+		if(parseInt(minChar) >= 0) this.minChar = parseInt(minChar);
+		
+		this.proxyUrl = proxyUrl;
+
 		/* create a unnumbered list and parse the default css for it */
 		var ulList = new Element('ul');
 		for(var defaultCSSAttr in this.defaultULCSS) {
