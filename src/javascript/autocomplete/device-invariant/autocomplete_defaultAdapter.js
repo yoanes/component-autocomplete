@@ -12,7 +12,7 @@ _AUTOCOMPLETE_YM_.defaultPreAdaptor = function(query) {
 /** the default behaviour of the autocomplete is based on YM's json data structure
  * hence YM doesn't need the default post adaptor
  */
-_AUTOCOMPLETE_YM_.defaultPostAdaptor = null;
+_AUTOCOMPLETE_YM_.defaultPostAdaptor = _AUTOCOMPLETE_YM_.minChar = null;
 
 _AUTOCOMPLETE_YM_.defaultULCSS = null;
 
@@ -50,16 +50,20 @@ _AUTOCOMPLETE_WPM_.defaultULCSS = {
 
 _AUTOCOMPLETE_WPM_.proxy = _AutoCompleteProxy_;
 
+_AUTOCOMPLETE_WPM_.minChar = null;
+
 /***************************************** 
 * DEFAULT PARAMETERS FOR LOCATION
 */
 _AUTOCOMPLETE_LOCATION_ = {};
 
+_AUTOCOMPLETE_LOCATION_.minChar = 3;
+
 _AUTOCOMPLETE_LOCATION_.defaultHandler = function(query, nth_instance) {
 	var geocoder = new EMS.Services.Geocoder();
 	
 	/* apparently EMS doesn't retrieve anything below 3 characters */
-	if(query.length < 3) return;
+	if(query.length < _AUTOCOMPLETE_LOCATION_.minChar) return;
 
 	var options = {};
 	var data2Send = {};
