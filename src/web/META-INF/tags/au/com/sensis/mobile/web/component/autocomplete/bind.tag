@@ -2,10 +2,10 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="core" uri="/au/com/sensis/mobile/web/component/core/core.tld"%>
-<%@ taglib prefix="ems" uri="/au/com/sensis/mobile/web/component/ems/ems.tld"%>
-<%@ taglib prefix="util" uri="/au/com/sensis/mobile/web/component/util/util.tld"%>
-<%@ taglib prefix="logging" uri="/au/com/sensis/mobile/web/component/logging/logging.tld"%>
+<%@ taglib prefix="base" uri="/au/com/sensis/mobile/web/component/core/base/base.tld"%>
+<%@ taglib prefix="ems" uri="/au/com/sensis/mobile/web/component/core/ems/ems.tld"%>
+<%@ taglib prefix="util" uri="/au/com/sensis/mobile/web/component/core/util/util.tld"%>
+<%@ taglib prefix="logging" uri="/au/com/sensis/mobile/web/component/core/logging/logging.tld"%>
 
 <%@ attribute name="device" required="true"
     type="au.com.sensis.wireless.common.volantis.devicerepository.api.Device"  
@@ -42,13 +42,13 @@
 <c:set var="componentName">
     <fmt:message key="comp.name" />
 </c:set>
-<core:deviceConfig var="deviceConfig" device="${device}" 
+<base:deviceConfig var="deviceConfig" device="${device}" 
     registryBeanName="${componentName}.comp.deviceConfigRegistry"/>
 
 <c:if test="${deviceConfig.enableAutocomplete}">
     
     <%-- Setup components that we depend on. --%>
-    <core:setup />
+    <base:setup />
     
     <c:if test="${includeEms}">
         <ems:setup />
@@ -57,16 +57,16 @@
     <util:setup />
     <logging:setup />
     
-    <core:compMcsBasePath var="compMcsBasePath" />
+    <base:compMcsBasePath var="compMcsBasePath" />
     
     <%-- Themes for current component: Not applicable. --%>
     
     <%-- Scripts for current component. --%>
-    <core:script src="${compMcsBasePath}/autocomplete/scripts/autocomplete-component-jsconfig.mscr"></core:script>
-    <core:script src="${compMcsBasePath}/autocomplete/scripts/autocomplete-component.mscr"></core:script>
+    <base:script src="${compMcsBasePath}/autocomplete/scripts/autocomplete-component-jsconfig.mscr"></base:script>
+    <base:script src="${compMcsBasePath}/autocomplete/scripts/autocomplete-component.mscr"></base:script>
     
-    <core:autoIncId var="autoCompleteScriptName" prefix="${componentName}" />
-    <core:script name="${autoCompleteScriptName}" type="text/javascript">
+    <base:autoIncId var="autoCompleteScriptName" prefix="${componentName}" />
+    <base:script name="${autoCompleteScriptName}" type="text/javascript">
         if(typeof(AutoComplete) != 'undefined') {
             window.addEventListener('load', function() {
                 new AutoComplete(
@@ -81,7 +81,7 @@
                 );
             }, false);
         }
-    </core:script>
+    </base:script>
 
 </c:if>
 
