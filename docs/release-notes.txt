@@ -1,4 +1,4 @@
-==== ******************** PENDING ******************* Version 1.1.9 (tag: autocomplete_v1_1_9) ====
+==== Version 1.2.0 (tag: autocomplete_v1_2_0) ====
 
 Removed showcase *.mscr overrides under showcase/resources/mcs/policies in line with
 new wl-build-scripts 1.0.13. Ensured that project-environment.properties.* contains all
