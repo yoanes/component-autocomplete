@@ -3,7 +3,7 @@
     xmlns:bs="http://mobile.sensis.com.au/build-scripts"
     xsi:schemaLocation="http://mobile.sensis.com.au/build-scripts au.com.sensis.mobile.bundles.xsd">
     
-    <bundles basename="autocomplete-component" package="autocomplete">
+    <bundles basename="autocomplete-component" subpackage="autocomplete">
         <bundle name="common" abstract="true">
             <fileset dir="${src.javascript.dir}/autocomplete/device-invariant">
             </fileset>
@@ -14,6 +14,10 @@
         </bundle>
          <bundle name="android" parent="common">
             <fileset dir="${src.javascript.dir}/autocomplete/device-variant/android-os">
+            </fileset>
+        </bundle>
+        <bundle name="ipad" parent="common">
+            <fileset dir="${src.javascript.dir}/autocomplete/device-variant/ipad">
             </fileset>
         </bundle>
     </bundles>
