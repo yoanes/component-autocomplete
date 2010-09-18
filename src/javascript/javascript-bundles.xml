@@ -16,6 +16,10 @@
             <fileset dir="${src.javascript.dir}/autocomplete/device-variant/android-os">
             </fileset>
         </bundle>
+        <bundle name="ipad" parent="common">
+            <fileset dir="${src.javascript.dir}/autocomplete/device-variant/ipad">
+            </fileset>
+        </bundle>
     </bundles>
   
 </bs:bundlesConfig>
