@@ -1,0 +1,5 @@
+mcs.devicerepository.filepath=/app/smtestapp/sandpit-uidev/wl-webapp-testbed/devices/devices.mdpr
+mcs.policies.filepath=/app/smtestapp/sandpit-uidev/autocomplete-component/
+
+mcs.cache.policies=false
+#!mcs.script.asset.path=/autocomplete-component-showcase/scripts/

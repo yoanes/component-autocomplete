@@ -21,7 +21,6 @@
     
     <definition name="autocomplete.component.showcase.home" extends="autocomplete.component.showcase.base">
         <put-attribute name="componentSetup" value="/WEB-INF/view/common/jsp/componentSetup.jsp"/>
-        <put-attribute name="xform" value="/WEB-INF/view/autocomplete/jsp/autocompleteXform.jsp"/>
         <put-attribute name="body" value="/WEB-INF/view/autocomplete/jsp/autocompleteHome.jsp"/>
     </definition>
 

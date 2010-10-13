@@ -34,16 +34,4 @@
         <property name="connectionTimeout" value="@{autocomplete.env.timeout.connect}"/>
         <property name="soTimeout" value="@{autocomplete.env.timeout.response}"/>
     </bean>
-    
-    <bean id="autocomplete.comp.deviceConfigRegistry"
-        class="au.com.sensis.mobile.web.component.autocomplete.device.AutoCompleteDeviceConfigRegistry">
-        <constructor-arg index="0" value="@{autocomplete.comp.device.config.classpath}"/>
-        <constructor-arg index="1">
-            <bean class="au.com.sensis.wireless.common.utils.jaxb.JaxbXMLBinderImpl">
-                <constructor-arg index="0" value="au.com.sensis.mobile.web.component.autocomplete.device.generated:au.com.sensis.mobile.web.component.core.device.generated"/>
-                <property name="validationEnabled" value="true"/>
-            </bean>
-        </constructor-arg>
-    </bean>
-    
 </beans>
