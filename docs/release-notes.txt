@@ -1,3 +1,7 @@
+==== Version 1.2.2 (tag: autocomplete_v1_2_2) ====
+
+Added minchar attribute to the tablet.js
+
 ==== Version 1.2.1 (tag: autocomplete_v1_2_0) ====
 
 Merged changes made in autocomplete_v1_1_8-002-ymb
