@@ -2,6 +2,8 @@
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<deviceport:setup device="${context.device}" />
+
 <%-- Set the default resource bundle for the current page. --%>    
 <fmt:setBundle basename="project-environment" />    
 
