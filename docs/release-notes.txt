@@ -1,3 +1,7 @@
+==== Version 1.2.2-001 (tag: autocomplete_v1_2_2-001) ====
+
+Improved the Android js code to scroll correctly if there's an AdvanceTextfield
+
 ==== Version 1.2.2-000 (tag: autocomplete_v1_2_2-000) ====
 
 Fixed an android bug where the browser would scroll to the top of the page when
