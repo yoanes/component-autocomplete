@@ -3,6 +3,10 @@ var AutoComplete = new Class({
 	
 	forceFieldToTop: function() {
 	
+		/*
+		 * See YMB-2248 for more info
+		 *  
+		  
 		var textfieldPosY = $(this.observe).offsetTop; 
 	
 		try
@@ -19,9 +23,11 @@ var AutoComplete = new Class({
 		}
 		catch(e)
 		{
-			/* No match, advance textfields aren't being used */
 		}
 	
 		window.scroll(0, textfieldPosY);
+				
+		*/
+		
 	}
 });
