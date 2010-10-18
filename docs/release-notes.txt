@@ -1,53 +1,7 @@
-==== Version 2.0.1 (tag: autocomplete_v2_0_1) ====
+==== Version 1.2.2-000 (tag: autocomplete_v1_2_2-000) ====
 
-Closing off iteration 2.0.1 of component migration to the Content Rendering Framework. Jiras:
-* CUI-288 AutoComplete - Content Rendering Framework migration - Java 
-* CUI-298 AutoComplete - Content Rendering Framework migration - UI 
-
-==== Version 2.0.0-001 (tag: autocomplete_v2_0_0-001) ====
-
-Jiras:
-- CUI-288: AutoComplete - Content Rendering Framework migration - Java
-    - Now uses crf. All JavaScript is migrated too.
-
-Upgrade notes:
-    - bind tag 
-        - usage of the proxy attribute has changed. Applications must now pass in the
-          actual URL string themselves. Example for WPM:
-      
-            <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-    
-            <%-- Set the default resource bundle for the current tag file. --%>    
-            <fmt:setBundle basename="project-environment" />    
-          
-            <c:set var="wpmProxy">
-                <fmt:message key="env.autocomplete.proxy.url" />
-            </c:set>
-            
-            <autocomplete:bind device="${context.device}" toObserve="wpmBusinessKeywords" toPopulate="wpmBusinessSuggestions" 
-                toURL="_AUTOCOMPLETE_WPM_.defaultURL.business" preDataAdaptor="_AUTOCOMPLETE_WPM_.defaultPreAdaptor" 
-                postDataAdaptor="_AUTOCOMPLETE_WPM_.defaultPostAdaptor" minChar="_AUTOCOMPLETE_WPM_.minChar"
-                ulCSS="_AUTOCOMPLETE_WPM_.defaultULCSS" proxy="${wpmProxy}"/>
-                
-        - optional maxSuggestions attribute added. Applications usually should not set this but
-          it can be used to modify the maximum number of autocomplete suggestions displayed.
-          
-        - mandatory includeEms attribute has been replaced with optional emsJsUrl attribute. 
-          This need only be set when using location autocomplete. Example:
-          
-            <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-            
-            <%-- Set the default resource bundle for the current tag file. --%>    
-            <fmt:setBundle basename="project-environment" />    
-            
-            <c:set var="emsJsUrl">
-                <fmt:message key="env.ems.service.js" /><fmt:message key="env.ems.token" />
-            </c:set>
-            
-            <autocomplete:bind device="${context.device}" toObserve="locKeywords" toPopulate="locSuggestions" 
-                toURL="_AUTOCOMPLETE_LOCATION_.defaultHandler" preDataAdaptor="_AUTOCOMPLETE_LOCATION_.defaultPreAdaptor" 
-                postDataAdaptor="_AUTOCOMPLETE_LOCATION_.defaultPostAdaptor" minChar="_AUTOCOMPLETE_LOCATION_.minChar"
-                ulCSS="_AUTOCOMPLETE_LOCATION_.defaultULCSS" proxy="${locationProxy}" emsJsUrl="${emsJsUrl}"/>
+Fixed an android bug where the browser would scroll to the top of the page when
+the autocomplete is populated. YMB-2248
 
 ==== Version 1.2.2 (tag: autocomplete_v1_2_2) ====
 
