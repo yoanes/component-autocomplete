@@ -22,9 +22,9 @@ _AUTOCOMPLETE_YM_.defaultULCSS = null;
 _AUTOCOMPLETE_WPM_ = {};
 
 _AUTOCOMPLETE_WPM_.defaultURL = {};
-_AUTOCOMPLETE_WPM_.defaultURL.business = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=businessName&";
-_AUTOCOMPLETE_WPM_.defaultURL.government = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=governmentName&";
-_AUTOCOMPLETE_WPM_.defaultURL.residential = "http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x?type=residentialName&";
+_AUTOCOMPLETE_WPM_.defaultURL.business = "http://www.whitepages.com.au/autosuggest/autoSuggest.x?type=businessName&";
+_AUTOCOMPLETE_WPM_.defaultURL.government = "http://www.whitepages.com.au/autosuggest/autoSuggest.x?type=governmentName&";
+_AUTOCOMPLETE_WPM_.defaultURL.residential = "http://www.whitepages.com.au/autosuggest/autoSuggest.x?type=residentialName&";
 
 _AUTOCOMPLETE_WPM_.defaultPreAdaptor = function(query) {
 	return "q=" + encodeURIComponent(query) + "&limit=7&timestamp=" + new Date().getTime();
