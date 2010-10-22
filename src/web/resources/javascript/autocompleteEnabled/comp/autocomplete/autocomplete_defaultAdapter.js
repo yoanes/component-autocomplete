@@ -61,7 +61,9 @@ _AUTOCOMPLETE_LOCATION_.defaultHandler = function(query, nth_instance) {
 	/* apparently EMS doesn't retrieve anything below 3 characters */
 	if(query.length < _AUTOCOMPLETE_LOCATION_.minChar) return;
 
-	var options = {};
+	/* Ignore any exceptions since we can't do anything about them. */
+	var options = {onException: function(e) {}} ;
+
 	var data2Send = {};
 	data2Send.address = {};
 	data2Send.address.suburb = query;
