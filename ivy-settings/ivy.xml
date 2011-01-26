@@ -62,7 +62,7 @@
         <!--
           - Dependencies on components.
           -->
-        <dependency org="com.sensis" name="wl-core-component" rev="2.0.4" conf="default,test"/>
+        <dependency org="com.sensis" name="wl-core-component" rev="2.0.6" conf="default,test"/>
         
         <!-- Commons -->
         <dependency org="apache" name="commons-lang" rev="2.4" conf="default" />

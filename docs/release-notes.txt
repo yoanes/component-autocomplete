@@ -1,3 +1,15 @@
+==== Version 2.0.2.1 (tag: autocomplete_v2_0_2_1) ====
+
+All JSPs and JSP tag files now set trimDirectiveWhitespaces="true".
+
+autocomplete-environment.properties.desk fixed to set:
+
+     env.proxy.host=sensis-proxy-vs.sensis.com.au
+
+Now depends on:
+
+    <dependency org="com.sensis" name="wl-core-component" rev="2.0.6" conf="default,test"/>
+
 ==== Version 2.0.2 (tag: autocomplete_v2_0_2) ====
 
 Now depends on:
