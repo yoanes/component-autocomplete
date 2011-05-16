@@ -1,3 +1,8 @@
+==== Version 2.0.2.2 (tag: autocomplete_v2_0_2_2) ====
+
+TrackIT
+	YMB-3198: As Yellow Mobile, I to remove ", State" from the auto-complete drop-down
+
 ==== Version 2.0.2.1 (tag: autocomplete_v2_0_2_1) ====
 
 All JSPs and JSP tag files now set trimDirectiveWhitespaces="true".
@@ -15,9 +20,9 @@ Now depends on:
 Now depends on:
 
     <dependency org="com.sensis" name="wl-build-scripts" rev="2.0.9" conf="buildBootstrap->default" />
-    <dependency org="com.sensis" name="wl-crf" rev="0.1.2-103" conf="default" />        
+    <dependency org="com.sensis" name="wl-crf" rev="0.1.2-103" conf="default" />
     <dependency org="com.sensis" name="wl-core-component" rev="2.0.4" conf="default,test"/>
-    <dependency org="com.sensis" name="wl-webapp-testbed" rev="2.0.6" conf="showcase->default"/>        
+    <dependency org="com.sensis" name="wl-webapp-testbed" rev="2.0.6" conf="showcase->default"/>
 
 ==== Version 2.0.1.1 (tag: autocomplete_v2_0_1_1) ====
 
@@ -30,8 +35,8 @@ Jiras
 ==== Version 2.0.1 (tag: autocomplete_v2_0_1) ====
 
 Closing off iteration 2.0.1 of component migration to the Content Rendering Framework. Jiras:
-* CUI-288 AutoComplete - Content Rendering Framework migration - Java 
-* CUI-298 AutoComplete - Content Rendering Framework migration - UI 
+* CUI-288 AutoComplete - Content Rendering Framework migration - Java
+* CUI-298 AutoComplete - Content Rendering Framework migration - UI
 
 ==== Version 2.0.0-001 (tag: autocomplete_v2_0_0-001) ====
 
@@ -40,52 +45,52 @@ Jiras:
     - Now uses crf. All JavaScript is migrated too.
 
 Upgrade notes:
-    - bind tag 
+    - bind tag
         - usage of the proxy attribute has changed. Applications must now pass in the
           actual URL string themselves. Example for WPM:
-      
+
             <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-    
-            <%-- Set the default resource bundle for the current tag file. --%>    
-            <fmt:setBundle basename="project-environment" />    
-          
+
+            <%-- Set the default resource bundle for the current tag file. --%>
+            <fmt:setBundle basename="project-environment" />
+
             <c:set var="wpmProxy">
                 <fmt:message key="env.autocomplete.proxy.url" />
             </c:set>
-            
-            <autocomplete:bind device="${context.device}" toObserve="wpmBusinessKeywords" toPopulate="wpmBusinessSuggestions" 
-                toURL="_AUTOCOMPLETE_WPM_.defaultURL.business" preDataAdaptor="_AUTOCOMPLETE_WPM_.defaultPreAdaptor" 
+
+            <autocomplete:bind device="${context.device}" toObserve="wpmBusinessKeywords" toPopulate="wpmBusinessSuggestions"
+                toURL="_AUTOCOMPLETE_WPM_.defaultURL.business" preDataAdaptor="_AUTOCOMPLETE_WPM_.defaultPreAdaptor"
                 postDataAdaptor="_AUTOCOMPLETE_WPM_.defaultPostAdaptor" minChar="_AUTOCOMPLETE_WPM_.minChar"
                 ulCSS="_AUTOCOMPLETE_WPM_.defaultULCSS" proxy="${wpmProxy}"/>
-                
+
         - optional maxSuggestions attribute added. Applications usually should not set this but
           it can be used to modify the maximum number of autocomplete suggestions displayed.
-          
-        - mandatory includeEms attribute has been replaced with optional emsJsUrl attribute. 
+
+        - mandatory includeEms attribute has been replaced with optional emsJsUrl attribute.
           This need only be set when using location autocomplete. Example:
-          
+
             <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-            
-            <%-- Set the default resource bundle for the current tag file. --%>    
-            <fmt:setBundle basename="project-environment" />    
-            
+
+            <%-- Set the default resource bundle for the current tag file. --%>
+            <fmt:setBundle basename="project-environment" />
+
             <c:set var="emsJsUrl">
                 <fmt:message key="env.ems.service.js" /><fmt:message key="env.ems.token" />
             </c:set>
-            
-            <autocomplete:bind device="${context.device}" toObserve="locKeywords" toPopulate="locSuggestions" 
-                toURL="_AUTOCOMPLETE_LOCATION_.defaultHandler" preDataAdaptor="_AUTOCOMPLETE_LOCATION_.defaultPreAdaptor" 
+
+            <autocomplete:bind device="${context.device}" toObserve="locKeywords" toPopulate="locSuggestions"
+                toURL="_AUTOCOMPLETE_LOCATION_.defaultHandler" preDataAdaptor="_AUTOCOMPLETE_LOCATION_.defaultPreAdaptor"
                 postDataAdaptor="_AUTOCOMPLETE_LOCATION_.defaultPostAdaptor" minChar="_AUTOCOMPLETE_LOCATION_.minChar"
                 ulCSS="_AUTOCOMPLETE_LOCATION_.defaultULCSS" proxy="${locationProxy}" emsJsUrl="${emsJsUrl}"/>
 
 ==== Version 1.2.2-003 (tag: autocomplete_v1_2_2-003) ====
 
-Merged changes from 1.2.0-001 (made on 1.2.0 branch) into the 1.2.2 branch. See 
-1.2.0-001 changes below. 
+Merged changes from 1.2.0-001 (made on 1.2.0 branch) into the 1.2.2 branch. See
+1.2.0-001 changes below.
 
 ==== Version 1.2.2-002 (tag: autocomplete_v1_2_2-002) ====
 
-Removed the scroll functionality, too buggy with Android, even without ATF 
+Removed the scroll functionality, too buggy with Android, even without ATF
 
 ==== Version 1.2.2-001 (tag: autocomplete_v1_2_2-001) ====
 
@@ -107,8 +112,8 @@ Merged changes made in autocomplete_v1_1_8-002-ymb
 ==== Version 1.2.0-001 (tag: autocomplete_v1_2_0-001) ====
 
 Emergency fix for White online changing production autocomplete URLs from
-http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x 
-to 
+http://www.whitepages.com.au/wp/autosuggest/autoSuggest.x
+to
 http://www.whitepages.com.au/autosuggest/autoSuggest.x
 
 ==== Version 1.2.0 (tag: autocomplete_v1_2_0) ====
@@ -122,23 +127,23 @@ wl-core-component upgrade.
 
 Expose the minimum character option in object instantiation
 
-Removed autocomplete.tld.jarexpanded in line with wl-build-scripts 1.0.13. 
+Removed autocomplete.tld.jarexpanded in line with wl-build-scripts 1.0.13.
 
 Upgraded some libs:
 
     <dependency org="com.sensis" name="wl-build-scripts" rev="1.2.0" conf="buildBootstrap->default" />
-    <dependency org="com.sensis" name="wl-core-component" rev="1.1.1" conf="default,test"/>                
-    <dependency org="com.sensis" name="wl-webapp-testbed" rev="1.0.9" conf="showcase->default"/>        
+    <dependency org="com.sensis" name="wl-core-component" rev="1.1.1" conf="default,test"/>
+    <dependency org="com.sensis" name="wl-webapp-testbed" rev="1.0.9" conf="showcase->default"/>
 
 ==== Version 1.1.8 (tag: autocomplete_v1_1_8) ====
 
 Fixed:
 - CUI-249 Auto Complete should scroll to top of screen on field focus
-    - implemented compromise solution for now: enabled for android but disabled for iPhone.  
-    
+    - implemented compromise solution for now: enabled for android but disabled for iPhone.
+
 - Also now depends on:
 
-    <dependency org="com.sensis" name="wl-build-scripts" rev="1.0.11" conf="buildBootstrap->default" />    
+    <dependency org="com.sensis" name="wl-build-scripts" rev="1.0.11" conf="buildBootstrap->default" />
 
 ==== Version 1.1.7 (tag: autocomplete_v1_1_7) ====
 
@@ -175,27 +180,27 @@ Fixed:
 - CUI-189: Autocomplete testpage -> Autosuggest list  takes long time to appear , even when user has finished typing the keyword
     - added potential optimisation for YM. The component provides a proxy that will limit the number of results
       returned to the client (since the Yellow datasource does not provide this functionality).
-    
+
 Upgrade notse:
 - Now depends on:
 
         <dependency org="org.codehaus" name="jackson-core-asl" rev="1.2.1" conf="default"/>
         <dependency org="org.codehaus" name="jackson-mapper-asl" rev="1.2.1" conf="default"/>
-        
+
 - The autocomplete:bind tag now has a mandatory proxy attribute. Sample values for each standard datasource:
 
     YM: proxy="_AUTOCOMPLETE_YM_.proxy"
     WPM: proxy="_AUTOCOMPLETE_WPM_.proxy"
     Location: proxy="_AUTOCOMPLETE_LOCATION_.proxy"
-    
+
 - Your webapp's environment properties needs to define env.autocomplete.proxy.ym.url in addition to the
   env.autocomplete.proxy.url that you previously specified. Sample values for a desktop environment:
-  
+
     env.autocomplete.proxy.url=http://localhost:8080/wl-autocomplete-component-showcase/comp/autocomplete/urlproxy
     env.autocomplete.proxy.ym.url=http://localhost:8080/wl-autocomplete-component-showcase/comp/autocomplete/yellowurlproxy
-      
+
   ie. /comp/autocomplete/urlproxy and /comp/autocomplete/yellowurlproxy are relative to the webapp's context root.
-    
+
 ==== Version 1.1.6-001 (tag: autocomplete_v1_1_6-001) ====
 
 Fixed:
@@ -205,7 +210,7 @@ Fixed:
 
 Update notes
 - Now depends on wl-core-component 1.0.29.
-- bind tag now requires device attribute to be set. 
+- bind tag now requires device attribute to be set.
 
 ==== Version 1.1.6 (tag: autocomplete_v1_1_6) ====
 

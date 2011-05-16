@@ -1,4 +1,4 @@
-/***************************************** 
+/*****************************************
  * YELLOW DEFAULT PARAMETERS
  */
 _AUTOCOMPLETE_YM_ = {};
@@ -16,7 +16,7 @@ _AUTOCOMPLETE_YM_.defaultPostAdaptor = _AUTOCOMPLETE_YM_.minChar = null;
 
 _AUTOCOMPLETE_YM_.defaultULCSS = null;
 
-/***************************************** 
+/*****************************************
  * WHITE DEFAULT PARAMETERS
  */
 _AUTOCOMPLETE_WPM_ = {};
@@ -34,7 +34,7 @@ _AUTOCOMPLETE_WPM_.defaultPostAdaptor = function(resultText) {
 	/* replace any occurance of \n (new line character) with , (comma) */
 	var pass1 = new RegExp('^(.*)$', 'gm');
 	var pass2 = new RegExp(',$', '');
-	
+
 	var afterReplacement = resultText.replace(pass1, "\"$1\",");
 	afterReplacement = afterReplacement.replace(pass2, "");
 
@@ -48,7 +48,7 @@ _AUTOCOMPLETE_WPM_.defaultULCSS = {
 
 _AUTOCOMPLETE_WPM_.minChar = null;
 
-/***************************************** 
+/*****************************************
 * DEFAULT PARAMETERS FOR LOCATION
 */
 _AUTOCOMPLETE_LOCATION_ = {};
@@ -57,7 +57,7 @@ _AUTOCOMPLETE_LOCATION_.minChar = 3;
 
 _AUTOCOMPLETE_LOCATION_.defaultHandler = function(query, nth_instance) {
 	var geocoder = new EMS.Services.Geocoder();
-	
+
 	/* apparently EMS doesn't retrieve anything below 3 characters */
 	if(query.length < _AUTOCOMPLETE_LOCATION_.minChar) return;
 
@@ -67,21 +67,21 @@ _AUTOCOMPLETE_LOCATION_.defaultHandler = function(query, nth_instance) {
 	var data2Send = {};
 	data2Send.address = {};
 	data2Send.address.suburb = query;
-	
+
 	geocoder.findLocalityByPrefix(data2Send, function(addresses){
 		var addressesLength = addresses.results.length;
 		if(addressesLength > 0) {
 			var finalResult = "{'suggestions': [";
 			for(var i = 0; i < addressesLength; i++) {
 				var address = addresses.results[i];
-				finalResult = finalResult.concat("\"",address.suburb.toLowerCase(), address.region.toLowerCase(), ", ", address.state, "\"");
+				finalResult = finalResult.concat("\"",address.suburb.toLowerCase(), address.region.toLowerCase(), " ", address.state, "\"");
 				if(i != addressesLength -1) finalResult = finalResult.concat(",");
 			}
 			finalResult = finalResult.concat("]}");
 			AUTOCOMPLETE.instances[nth_instance].populateResult(finalResult);
 		}
 		else AUTOCOMPLETE.instances[nth_instance].dropList();
-	}, options); 
+	}, options);
 }
 
 _AUTOCOMPLETE_LOCATION_.defaulPreAdaptor = _AUTOCOMPLETE_LOCATION_.defaultPostAdaptor = null;
