@@ -13,9 +13,7 @@
         <property name="locations">
             <list>
                 <value>classpath:/au/com/sensis/mobile/web/component/autocomplete/autocomplete-component.properties</value>
-                
-                <!-- Load a platform dependent environment properties file. -->
-                <value>classpath:/au/com/sensis/mobile/web/component/autocomplete/autocomplete-environment.properties.@{global.platform}</value>
+                <value>classpath:/autocomplete-environment.properties</value>
             </list>
         </property>
     </bean>                
@@ -31,7 +29,6 @@
         <property name="locations">
             <list>
                 <value>classpath:/autocomplete-component.properties</value>
-                <value>classpath:/autocomplete-environment.properties</value>
             </list>
         </property>
         
