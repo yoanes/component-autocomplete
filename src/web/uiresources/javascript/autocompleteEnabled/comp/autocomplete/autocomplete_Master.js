@@ -302,3 +302,24 @@ var AutoCompletePrototype = new Class({
 		}
 	}
 });
+
+/* do any initialization here */
+window.addEventListener('load', function(){
+	if($defined(window._AutoCompleteInitParam_) && window._AutoCompleteInitParam_.length > 0) {
+		var _AutoCompleteIniParam_ = window._AutoCompleteInitParam_;
+		for(var i = 0; i < _AutoCompleteInitParam_.length; i++) {
+			var initParamObject = _AutoCompleteInitParam_[i];
+			new AutoComplete(
+				initParamObject.toObserve,
+				initParamObject.toPopulate,
+				initParamObject.toUrl,
+				initParamObject.preDataAdaptor,
+				initParamObject.postDataAdaptor,
+				initParamObject.minChar,
+				initParamObject.maxSuggestions,
+				initParamObject.ulCSS,
+				initParamObject.proxy
+			);
+		}
+	}
+}, true);

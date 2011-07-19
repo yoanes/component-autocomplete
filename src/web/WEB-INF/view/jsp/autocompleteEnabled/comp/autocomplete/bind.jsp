@@ -50,19 +50,19 @@
 
 <base:autoIncId var="autoCompleteScriptName" prefix="${componentName}" />
 <crf:script name="${autoCompleteScriptName}" type="text/javascript" device="${device}">
-    if(typeof(AutoComplete) != 'undefined') {
-        window.addEventListener('load', function() {
-            new AutoComplete(
-                '<c:out value="${toObserve}"/>',
-                '<c:out value="${toPopulate}"/>',
-                <c:out value="${toURL}"/>,
-                <c:out value="${preDataAdaptor}"/>,
-                <c:out value="${postDataAdaptor}"/>,
-                <c:out value="${minChar}"/>,
-                '<c:out value="${maxSuggestions}"/>',
-                <c:out value="${ulCSS}"/>,
-                '<c:out value="${proxy}"/>'
-            );
-        }, false);
-    }
+	(function(autoCompleteInitParam) {
+		if(!$defined(window._AutoCompleteInitParam_)) 
+			window._AutoCompleteInitParam_ = new Array();
+		window._AutoCompleteInitParam_.push(autoCompleteInitParam);	
+	})({
+		toObserve: '<c:out value="${toObserve}"/>',
+		toPopulate: '<c:out value="${toPopulate}"/>',
+		toUrl: <c:out value="${toURL}"/>,
+		preDataAdaptor: <c:out value="${preDataAdaptor}"/>,
+		postDataAdaptor: <c:out value="${postDataAdaptor}"/>,
+		minChar: <c:out value="${minChar}"/>,
+		maxSuggestion: '<c:out value="${maxSuggestions}"/>',
+		ulCSS: <c:out value="${ulCSS}"/>,
+		proxy: '<c:out value="${proxy}"/>'
+	});
 </crf:script>
