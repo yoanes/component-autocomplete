@@ -1,3 +1,11 @@
+==== Version 3.0.0 (tag: autocomplete_v3_0_0) ====
+
+Upgraded to CRF 2.0.11.
+
+Upgrade steps:
+- This version depends on CRF 2.x so don't upgrade unless you're okay with pulling in this 
+  dependency.
+
 ==== Version 2.0.2.3 (tag: autocomplete_v2_0_2_3) ====
 
 Default environment property files are no longer shipped with the component. This is due to the Mobiles team restructure.
