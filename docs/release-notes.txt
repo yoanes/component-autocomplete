@@ -1,3 +1,15 @@
+==== Version 3.1.0 (tag: autocomplete_v3_1_0) ====
+
+Now depends on wl-core-component 3.1.0. The autocomplete component now sets the following 
+explicitly itself since the core component no longer does it:
+
+    EMS.Services.communicationMode = 'CrossDomain';
+
+Upgrade steps:
+- mostly transparent but this component now depends on wl-core-component 3.1.0. The latter
+  no longer sets EMS.Services.communicationMode = 'CrossDomain'; so beware of this if any of 
+  your code uses EMS.
+
 ==== Version 3.0.0 (tag: autocomplete_v3_0_0) ====
 
 Upgraded to CRF 2.0.11.
