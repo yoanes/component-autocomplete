@@ -60,10 +60,9 @@ var AutoCompletePrototype = new Class({
 		if(parseInt(limit) > 0) this.limit = parseInt(limit);
 		
 		this.proxyUrl = proxyUrl;
-
+		
 		/* create a unnumbered list and parse the default css for it */
 		var ulList = new Element('ul');
-		ulList.className = 'ac_ul';
 		for(var defaultCSSAttr in this.defaultULCSS) {
 			ulList.style[defaultCSSAttr] = this.defaultULCSS[defaultCSSAttr];
 		}
@@ -91,13 +90,16 @@ var AutoCompletePrototype = new Class({
 		
 		/* create the close link */
 		this.closeLink = new Element('a');
-		this.closeLink.className = 'ac_close';
 		this.closeLink.href = 'javascript:void(0)';
+		this.closeLink.style.textDecoration = 'none';
+		this.closeLink.style.textTransform = 'lowercase';
+		this.closeLink.style.color = '#888888';
 		this.closeLink.addEventListener('click', function(e) { this.dropList(); this.hideSuggestion = true; return false; }.bind(this), false);
 		
 		/* create the static div to clear the float left */
 		this.clearDiv = new Element('div');
-		this.clearDiv.className = 'ac_clear';
+		this.clearDiv.style.clear = 'both';
+		this.clearDiv.style.height = '0px';
 		
 		/* add to the global component name space */
 		this.nth = AUTOCOMPLETE.instances.push(this) - 1;
@@ -107,10 +109,13 @@ var AutoCompletePrototype = new Class({
 		var includeCloseLink = false;
 		
 		var liList = new Element('li');	
+		liList.style.padding = '3px 8px';
 		
 		var aList = new Element('a');
 		aList.href = 'javascript:void(0)';
-		aList.className = 'ac_suggest';
+		aList.style.textDecoration = 'none';
+		aList.style.display = 'block';
+		aList.style.fontWeight = 'bold';
 		
 		if(liText instanceof Object) {
 			try {
@@ -133,7 +138,9 @@ var AutoCompletePrototype = new Class({
 		if(firstLastItem == 'first' || firstLastItem == 'only1') {
 			includeCloseLink = true;
 			
-			aList.className += ' ac_last_suggest';
+			/* add special style to the link */
+			aList.style.width = '85%';
+			aList.style.cssFloat = 'left';
 			
 			if(firstLastItem == 'only1'){
 				/* make sure it doesn't render the bottom border if it's the only item in the list*/
@@ -143,7 +150,7 @@ var AutoCompletePrototype = new Class({
 		
 		/* parse the style of border bottom to all but the last */
 		if(firstLastItem != 'last') {
-			liList.className = 'ac_li';
+			liList.style.borderBottom = '1px solid #d4d4d4';
 		}
 		
 		liList.appendChild(aList);
@@ -316,24 +323,3 @@ var AutoCompletePrototype = new Class({
 		return this._lastSelectedId;
 	}
 });
-
-/* do any initialization here */
-window.addEventListener('load', function(){
-	if($defined(window._AutoCompleteInitParam_) && window._AutoCompleteInitParam_.length > 0) {
-		var _AutoCompleteIniParam_ = window._AutoCompleteInitParam_;
-		for(var i = 0; i < _AutoCompleteInitParam_.length; i++) {
-			var initParamObject = _AutoCompleteInitParam_[i];
-			new AutoComplete(
-				initParamObject.toObserve,
-				initParamObject.toPopulate,
-				initParamObject.toUrl,
-				initParamObject.preDataAdaptor,
-				initParamObject.postDataAdaptor,
-				initParamObject.minChar,
-				initParamObject.maxSuggestions,
-				initParamObject.ulCSS,
-				initParamObject.proxy
-			);
-		}
-	}
-}, true);

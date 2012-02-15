@@ -56,7 +56,6 @@ _AUTOCOMPLETE_LOCATION_ = {};
 _AUTOCOMPLETE_LOCATION_.minChar = 3;
 
 _AUTOCOMPLETE_LOCATION_.defaultHandler = function(query, nth_instance) {
-    EMS.Services.communicationMode = 'CrossDomain';
 	var geocoder = new EMS.Services.Geocoder();
 
 	/* apparently EMS doesn't retrieve anything below 3 characters */
