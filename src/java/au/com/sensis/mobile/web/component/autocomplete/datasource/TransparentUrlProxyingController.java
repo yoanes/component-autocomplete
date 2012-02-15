@@ -23,7 +23,7 @@ import au.com.sensis.wireless.common.utils.http.HttpResponse;
  */
 public class TransparentUrlProxyingController extends AbstractController {
 
-    private static final String URL_PARAM_NAME = "url";
+    protected static final String URL_PARAM_NAME = "url";
     private final HttpClientService httpClientService;
 
     /**
@@ -42,7 +42,7 @@ public class TransparentUrlProxyingController extends AbstractController {
      * {@inheritDoc}
      */
     @Override
-    protected final ModelAndView handleRequestInternal(
+    protected ModelAndView handleRequestInternal(
             final HttpServletRequest httpServletRequest,
             final HttpServletResponse httpServletResponse) throws Exception {
 
@@ -79,7 +79,7 @@ public class TransparentUrlProxyingController extends AbstractController {
     /**
      * @return the httpClientService
      */
-    private HttpClientService getHttpClientService() {
+    protected HttpClientService getHttpClientService() {
         return httpClientService;
     }
 
