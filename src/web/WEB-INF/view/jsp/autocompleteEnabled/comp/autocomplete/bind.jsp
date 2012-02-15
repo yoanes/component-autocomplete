@@ -43,7 +43,8 @@
 <util:setup device="${device}" />
 <logging:setup device="${device}" />
 
-<%-- Themes for current component: Not applicable. --%>
+<%-- Themes for current component. --%>
+<crf:link rel="stylesheet" type="text/css" href="comp/autocomplete/autocomplete.css" device="${device}"/>
 
 <%-- Scripts for current component. --%>
 <crf:script src="comp/autocomplete/package" type="text/javascript" device="${device}"></crf:script>
