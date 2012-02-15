@@ -54,15 +54,15 @@
     <dependencies>
     
         <!-- Shared build scripts required by this project. -->    
-        <dependency org="com.sensis" name="wl-build-scripts" rev="2.5.1" conf="buildBootstrap->default" />
+        <dependency org="com.sensis" name="wl-build-scripts" rev="2.1.2" conf="buildBootstrap->default" />
         
         <!-- Content Rendering Framework. -->
-        <dependency org="com.sensis" name="wl-crf" rev="2.0.11" conf="default" />        
+        <dependency org="com.sensis" name="wl-crf" rev="0.1.2-103" conf="default" />        
         
         <!--
           - Dependencies on components.
           -->
-        <dependency org="com.sensis" name="wl-core-component" rev="3.1.0" conf="default,test"/>
+        <dependency org="com.sensis" name="wl-core-component" rev="2.0.6" conf="default,test"/>
         
         <!-- Commons -->
         <dependency org="apache" name="commons-lang" rev="2.4" conf="default" />
@@ -85,8 +85,8 @@
         <!-- Struts2 Tiles plugin -->
         <dependency org="org.apache" name="struts2-tiles-plugin" rev="2.0.11.2" conf="showcase->default"/>
         
-        <!-- Httpclient 
-        <dependency org="apache" name="commons-httpclient" rev="3.1" conf="default"/> --> 
+        <!-- Httpclient -->
+        <dependency org="apache" name="commons-httpclient" rev="3.1" conf="default"/> 
 
         <!-- Spring Integration -->        
         <dependency org="org.springframework" name="spring" rev="2.5.5" conf="default"/>
@@ -126,7 +126,8 @@
         <!-- SDP Common -->
         <dependency org="com.sensis" name="sdpCommon-logging" rev="0.5" conf="default"/>        
         <dependency org="com.sensis" name="sdpCommon-web" rev="1.6-012" conf="default"/>
-		 <dependency org="com.sensis" name="sdpCommon-utils" rev="1.1-002" conf="default"/>
+ 		<dependency org="com.sensis" name="sdpCommon-utils" rev="1.1-002" conf="default"/>
+ 		
         <!-- EMS dependencies -->
         <dependency org="com.sensis" name="ems-cxf-client" rev="1.6" conf="showcase->default"/>
 
@@ -150,14 +151,5 @@
         <dependency org="com.vladium" name="emma" rev="2.0" conf="test->default"/>
 
         <dependency org="com.sensis" name="wl-webapp-testbed" rev="2.1.0" conf="showcase->default"/>
-
-        <!-- ================================================================================ -->
-        <!-- Exclusions. -->
-        
-        <!-- 
-          - Exclude old versions of ehcache which were from a different org and had a different 
-          - module name. 
-          -->
-        <exclude org="ehcache" module="ehcache" />
     </dependencies>
 </ivy-module>
