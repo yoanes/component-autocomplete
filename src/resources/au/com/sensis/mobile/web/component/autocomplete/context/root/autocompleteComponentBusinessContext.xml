@@ -17,6 +17,17 @@
         <constructor-arg><value>@{autocomplete.env.proxy.password}</value></constructor-arg>
         <constructor-arg><ref local="autocomplete.comp.connectionManager"/></constructor-arg>
         <constructor-arg><value>@{autocomplete.env.timeout.pool}</value></constructor-arg>
+        <constructor-arg><value>@{autocomplete.env.cookie}</value></constructor-arg>
+    </bean>
+    
+     <bean id="autocomplete.comp.loc2HttpService" factory-bean="autocomplete.comp.httpClientFactory" factory-method="create">
+        <constructor-arg><value>@{autocomplete.env.loc2.proxy.host}</value></constructor-arg>
+        <constructor-arg><value>@{autocomplete.env.loc2.proxy.port}</value></constructor-arg>
+        <constructor-arg><value>@{autocomplete.env.loc2.proxy.user}</value></constructor-arg>
+        <constructor-arg><value>@{autocomplete.env.loc2.proxy.password}</value></constructor-arg>
+        <constructor-arg><ref local="autocomplete.comp.connectionManager"/></constructor-arg>
+        <constructor-arg><value>@{autocomplete.env.loc2.timeout.pool}</value></constructor-arg>
+        <constructor-arg><value>@{autocomplete.env.loc2.cookie}</value></constructor-arg>
     </bean>
 
     <bean id="autocomplete.comp.connectionManager"
