@@ -92,3 +92,21 @@ _AUTOCOMPLETE_LOCATION_.defaultULCSS = {
 	'-webkit-box-shadow': '1px 1px 3px #bbbbbb',
 	'textTransform': 'capitalize'
 }
+
+/*****************************************
+* LOCATION EMS V2 DEFAULT PARAMETERS
+*/
+_AUTOCOMPLETE_LOCATION2_ = {};
+
+_AUTOCOMPLETE_LOCATION2_.defaultURL = "http://wiemsrs01d.in.sensis.com.au:24121/v2/service/search/suggest";
+
+_AUTOCOMPLETE_LOCATION2_.defaultPreAdaptor = function(query) {
+	return "?query=" + encodeURIComponent(query);
+}
+
+_AUTOCOMPLETE_LOCATION2_.defaultULCSS = {
+	'-webkit-border-radius':'5px',
+	'-webkit-box-shadow': '1px 1px 3px #bbbbbb'
+}
+
+_AUTOCOMPLETE_LOCATION2_.defaultPostAdaptor = _AUTOCOMPLETE_LOCATION2_.minChar = null;

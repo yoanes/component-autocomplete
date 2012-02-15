@@ -47,6 +47,8 @@ var AutoCompletePrototype = new Class({
 	
 	itemChose: false,
 	
+	_lastSelectedId: null,
+	
 	initialize: function(toObserve, toPopulate, toURL, preDataAdaptor, postDataAdaptor, minChar, limit, ulCSS, proxyUrl) {
 		this.observe = toObserve;
 		this.populate = toPopulate;
@@ -61,6 +63,7 @@ var AutoCompletePrototype = new Class({
 
 		/* create a unnumbered list and parse the default css for it */
 		var ulList = new Element('ul');
+		ulList.className = 'ac_ul';
 		for(var defaultCSSAttr in this.defaultULCSS) {
 			ulList.style[defaultCSSAttr] = this.defaultULCSS[defaultCSSAttr];
 		}
@@ -88,16 +91,13 @@ var AutoCompletePrototype = new Class({
 		
 		/* create the close link */
 		this.closeLink = new Element('a');
+		this.closeLink.className = 'ac_close';
 		this.closeLink.href = 'javascript:void(0)';
-		this.closeLink.style.textDecoration = 'none';
-		this.closeLink.style.textTransform = 'lowercase';
-		this.closeLink.style.color = '#888888';
 		this.closeLink.addEventListener('click', function(e) { this.dropList(); this.hideSuggestion = true; return false; }.bind(this), false);
 		
 		/* create the static div to clear the float left */
 		this.clearDiv = new Element('div');
-		this.clearDiv.style.clear = 'both';
-		this.clearDiv.style.height = '0px';
+		this.clearDiv.className = 'ac_clear';
 		
 		/* add to the global component name space */
 		this.nth = AUTOCOMPLETE.instances.push(this) - 1;
@@ -107,23 +107,33 @@ var AutoCompletePrototype = new Class({
 		var includeCloseLink = false;
 		
 		var liList = new Element('li');	
-		liList.style.padding = '3px 8px';
 		
 		var aList = new Element('a');
 		aList.href = 'javascript:void(0)';
-		aList.style.textDecoration = 'none';
-		aList.style.display = 'block';
-		aList.style.fontWeight = 'bold';
-		aList.appendChild(document.createTextNode(liText));
-		aList.addEventListener('click', function(e) { this.choose(liText); return false; }.bind(this), false);
+		aList.className = 'ac_suggest';
+		
+		if(liText instanceof Object) {
+			try {
+				aList.id = liText.id;
+				aList.appendChild(document.createTextNode(liText.text));
+				aList.addEventListener('click', function(e) { 
+					this.choose(liText.text);
+					this._lastSelectedId = liText.id;
+					return false;
+				}.bind(this), false);
+			} catch(e) { console.log(e);}
+		}
+		
+		else { 
+			aList.appendChild(document.createTextNode(liText)); 
+			aList.addEventListener('click', function(e) { this.choose(liText); return false; }.bind(this), false);
+		}
 		
 		/* the first item should get the close link next to it */
 		if(firstLastItem == 'first' || firstLastItem == 'only1') {
 			includeCloseLink = true;
 			
-			/* add special style to the link */
-			aList.style.width = '85%';
-			aList.style.cssFloat = 'left';
+			aList.className += ' ac_last_suggest';
 			
 			if(firstLastItem == 'only1'){
 				/* make sure it doesn't render the bottom border if it's the only item in the list*/
@@ -133,7 +143,7 @@ var AutoCompletePrototype = new Class({
 		
 		/* parse the style of border bottom to all but the last */
 		if(firstLastItem != 'last') {
-			liList.style.borderBottom = '1px solid #d4d4d4';
+			liList.className = 'ac_li';
 		}
 		
 		liList.appendChild(aList);
@@ -300,6 +310,10 @@ var AutoCompletePrototype = new Class({
 			this.UL.empty();
 			$(this.populate).style.display = 'none';
 		}
+	},
+	
+	getID: function() {
+		return this._lastSelectedId;
 	}
 });
 
