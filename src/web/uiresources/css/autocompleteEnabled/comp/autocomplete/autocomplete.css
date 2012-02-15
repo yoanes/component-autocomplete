@@ -1,0 +1,29 @@
+.ac_close {
+	text-decoration: none;
+	text-transform: lowercase;
+	color: #888888;
+}
+
+.ac_clear {
+	clear: both;
+	height: 0px;
+}
+
+.ac_ul li {
+	padding: 3px 8px;
+}
+
+a.ac_suggest {
+	text-decoration: none;
+	display: block;
+	font-weight: bold;
+}
+
+a.ac_last_suggest {
+	width: 85%;
+	float: left;
+}
+
+li.ac_li {
+	border-bottom: 1px solid #d4d4d4;
+}

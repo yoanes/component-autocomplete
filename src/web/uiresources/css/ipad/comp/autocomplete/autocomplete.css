@@ -1,0 +1,9 @@
+.ac_close {
+	float: right;
+	margin-left: 2px;
+}
+
+a.ac_last_suggest {
+	width: auto !important;
+	float: none !important;
+}
