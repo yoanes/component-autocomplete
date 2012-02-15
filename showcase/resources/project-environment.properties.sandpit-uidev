@@ -5,6 +5,7 @@
 
 env.autocomplete.proxy.url=/uidev/autocomplete-component-showcase/comp/autocomplete/urlproxy
 env.autocomplete.proxy.ym.url=/uidev/autocomplete-component-showcase/comp/autocomplete/yellowurlproxy
+env.autocomplete.proxy.loc2.url=/uidev/autocomplete-component-showcase/comp/autocomplete/location2urlproxy
 
 env.ems.service.js=http://ems.whereis.com/v1/web/js/ems/EMS.js?profile=mobi&amp;token=
 env.ems.token=1386742213227490342

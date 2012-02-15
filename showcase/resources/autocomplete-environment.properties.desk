@@ -10,7 +10,21 @@ env.proxy.password=
 env.timeout.connect=10000
 env.timeout.response=20000
 env.timeout.pool=10000
+env.cookie=ignoreCookies
+
+env.loc2.proxy.host=
+env.loc2.proxy.port=
+env.loc2.proxy.user=
+env.loc2.proxy.password=
+
+env.loc2.timeout.connect=10000
+env.loc2.timeout.response=20000
+env.loc2.timeout.pool=10000
+env.loc2.cookie=ignoreCookies
 
 # The following properties are only relevant for a connection pooling service.
 env.max.connections.perhost=20
 env.max.connections=20
+
+env.ems2.token=2804511659754496657
+env.ems2.password=health!check!604799?
