@@ -15,6 +15,9 @@
 </c:set>
 <%-- No proxy required for location autocomplete.--%>
 <c:set var="locationProxy" value="" />
+<c:set var="loc2Proxy">
+    <fmt:message key="env.autocomplete.proxy.loc2.url" />
+</c:set>
 
 <c:set var="emsJsUrl">
     <fmt:message key="env.ems.service.js" /><fmt:message key="env.ems.token" />
@@ -44,4 +47,9 @@
     toURL="_AUTOCOMPLETE_LOCATION_.defaultHandler" preDataAdaptor="_AUTOCOMPLETE_LOCATION_.defaultPreAdaptor" 
     postDataAdaptor="_AUTOCOMPLETE_LOCATION_.defaultPostAdaptor" minChar="_AUTOCOMPLETE_LOCATION_.minChar"
     ulCSS="_AUTOCOMPLETE_LOCATION_.defaultULCSS" proxy="${locationProxy}" emsJsUrl="${emsJsUrl}"/>
+    
+<autocomplete:bind device="${context.device}" toObserve="loc2Keywords" toPopulate="loc2Suggestions" 
+    toURL="_AUTOCOMPLETE_LOCATION2_.defaultURL" preDataAdaptor="_AUTOCOMPLETE_LOCATION2_.defaultPreAdaptor" 
+    postDataAdaptor="_AUTOCOMPLETE_LOCATION2_.defaultPostAdaptor" minChar="_AUTOCOMPLETE_LOCATION2_.minChar"
+    ulCSS="_AUTOCOMPLETE_LOCATION2_.defaultULCSS" proxy="${loc2Proxy}" emsJsUrl="${emsJsUrl}"/>
 

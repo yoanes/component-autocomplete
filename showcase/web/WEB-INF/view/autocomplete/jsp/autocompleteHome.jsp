@@ -31,5 +31,11 @@
             <input id="locKeywords" name="locKeywords" />
         </div>
         <div id="locSuggestions"></div>
+        
+         <div>
+            <label for="loc2Keywords" style="display: block;">Location EMS v2</label>        
+            <input id="loc2Keywords" name="locKeywords" />
+        </div>
+        <div id="loc2Suggestions"></div>
     </form>    
 </div>
