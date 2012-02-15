@@ -12,8 +12,8 @@ env.timeout.response=20000
 env.timeout.pool=10000
 env.cookie=ignoreCookies
 
-env.loc2.proxy.host=
-env.loc2.proxy.port=
+env.loc2.proxy.host=10.89.6.97
+env.loc2.proxy.port=8080
 env.loc2.proxy.user=
 env.loc2.proxy.password=
 
