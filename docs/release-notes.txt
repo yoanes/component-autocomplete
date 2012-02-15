@@ -1,26 +1,6 @@
-==== Version 3.1.1 (tag: autocomplete_v3_1_1) ====
-Add EMS v2 end point for the Location autocomplete
-No depends explicitly on the sdpCommon-utils 1.1-002
+==== Version 2.0.2.4 (tag: autocomplete_v2_0_2_4) ====
 
-==== Version 3.1.0 (tag: autocomplete_v3_1_0) ====
-
-Now depends on wl-core-component 3.1.0. The autocomplete component now sets the following 
-explicitly itself since the core component no longer does it:
-
-    EMS.Services.communicationMode = 'CrossDomain';
-
-Upgrade steps:
-- mostly transparent but this component now depends on wl-core-component 3.1.0. The latter
-  no longer sets EMS.Services.communicationMode = 'CrossDomain'; so beware of this if any of 
-  your code uses EMS.
-
-==== Version 3.0.0 (tag: autocomplete_v3_0_0) ====
-
-Upgraded to CRF 2.0.11.
-
-Upgrade steps:
-- This version depends on CRF 2.x so don't upgrade unless you're okay with pulling in this 
-  dependency.
+Updated with EMS v2 Location suggestion.
 
 ==== Version 2.0.2.3 (tag: autocomplete_v2_0_2_3) ====
 
