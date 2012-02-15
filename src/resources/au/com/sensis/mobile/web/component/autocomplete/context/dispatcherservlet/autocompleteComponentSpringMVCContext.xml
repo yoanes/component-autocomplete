@@ -13,6 +13,7 @@
             <value>
                 @{autocomplete.comp.handler.mapping.url.prefix}/urlproxy=autocomplete.comp.transparentUrlProxyingController
                 @{autocomplete.comp.handler.mapping.url.prefix}/yellowurlproxy=autocomplete.comp.yellowUrlProxyingController
+                @{autocomplete.comp.handler.mapping.url.prefix}/location2urlproxy=autocomplete.comp.location2UrlProxyingController
             </value>
         </property>
         <property name="interceptors">
@@ -32,5 +33,12 @@
     <bean id="autocomplete.comp.yellowUrlProxyingController" 
         class="au.com.sensis.mobile.web.component.autocomplete.datasource.YellowUrlProxyingController">
         <constructor-arg index="0" ref="autocomplete.comp.httpService" />
+    </bean>
+    
+    <bean id="autocomplete.comp.location2UrlProxyingController" 
+        class="au.com.sensis.mobile.web.component.autocomplete.datasource.Location2UrlProxyingController">
+        <constructor-arg index="0" ref="autocomplete.comp.loc2HttpService" />
+        <property name="token" value="@{autocomplete.env.ems2.token}" />
+        <property name="password" value="@{autocomplete.env.ems2.password}" />
     </bean>
 </beans>
