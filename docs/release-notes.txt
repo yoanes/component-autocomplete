@@ -1,3 +1,7 @@
+==== Version 3.1.1 (tag: autocomplete_v3_1_2) ====
+
+Minor bug fix. Decode the query before sending them into the EMS
+
 ==== Version 3.1.1 (tag: autocomplete_v3_1_1) ====
 Add EMS v2 end point for the Location autocomplete
 No depends explicitly on the sdpCommon-utils 1.1-002

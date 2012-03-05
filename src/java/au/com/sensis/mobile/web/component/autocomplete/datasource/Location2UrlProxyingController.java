@@ -1,6 +1,8 @@
 package au.com.sensis.mobile.web.component.autocomplete.datasource;
 
 import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +22,8 @@ public class Location2UrlProxyingController extends TransparentUrlProxyingContro
 	public String maxSize;
 	public ArrayList<String> granularity = new ArrayList<String>();
 	
-	RequestPayload(String query, String limit) {
-	    this.query = query;
+	RequestPayload(String query, String limit) throws UnsupportedEncodingException {
+	    this.query = URLDecoder.decode(query, "UTF-8");
 	    this.maxSize = limit;
 	    
 	    this.granularity.add("STATE");
