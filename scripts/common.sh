@@ -2,7 +2,7 @@
 #
 # Content Rendering Framework script containing common code for generating scaled images.
 #
-# CRF Version: @CRFVERSION@
+# CRF Version: 3.0.0.30
 #
 # $Revision$
 #
@@ -118,43 +118,48 @@ function findSourceImagesForPropertyFiles {
     local propertyFileNamePattern="*.properties"
     local md5FileNamePattern="*.md5"
 
-    local i=1;
-    for propFile in $propertyFiles
-    do
-        local groupRelativePropertyFile=${propFile#$imagesResourcesDir/*/}
-        if [ $i -eq 1 ] 
-        then
-            echo $groupRelativePropertyFile > $$.tmp.propFiles
-        else 
-            echo $groupRelativePropertyFile >> $$.tmp.propFiles
-        fi
-        local i=$((i + 1))
-    done
-
-    # Now find all images that correspond to the properties files found.
-    local findOptions="$imagesResourcesDir -type f -a '!' -path '*CVS*' -a '!' -regex \"$generatedImageDirRegex\" \
-            -a '!' -name \"$dotNullImageNamePattern\" -a '!' -name \"$propertyFileNamePattern\" -a '!' -name \"$md5FileNamePattern\" -a \\("
-    local i=1;
-    for propFile in `sort $$.tmp.propFiles |uniq`
-    do
-        if [ "$debug" -eq 0 ]
-        then
-            $echoCmd >> "$debugFile"
-            $echoCmd "propertyFile: $propFile" >> "$debugFile"
-        fi
-        local propertyFileBasename=`basename $propFile |tr -d "\r"`
-        local imageFileStem=${propertyFileBasename%.properties}
-        if [ $i -eq 1 ] 
-        then
-            local findOptions="${findOptions} -name \"${imageFileStem}.*\" "
-        else
-            local findOptions="${findOptions} -o -name \"${imageFileStem}.*\" "
-        fi
-        local i=$((i + 1))
-    done
-    local findOptions="${findOptions} \\)"
-
-    eval $findCmd $findOptions
+    if [ -n "$propertyFiles" ]
+    then
+        local i=1;
+        for propFile in $propertyFiles
+        do
+            local groupRelativePropertyFile=${propFile#$imagesResourcesDir/*/}
+            if [ $i -eq 1 ] 
+            then
+                echo $groupRelativePropertyFile > $$.tmp.propFiles
+            else 
+                echo $groupRelativePropertyFile >> $$.tmp.propFiles
+            fi
+            local i=$((i + 1))
+        done
+    
+        # Now find all images that correspond to the properties files found.
+        local findOptions="$imagesResourcesDir -type f -a '!' -path '*CVS*' -a '!' -regex \"$generatedImageDirRegex\" \
+                -a '!' -name \"$dotNullImageNamePattern\" -a '!' -name \"$propertyFileNamePattern\" -a '!' -name \"$md5FileNamePattern\" -a \\("
+        local i=1;
+        for propFile in `sort $$.tmp.propFiles |uniq`
+        do
+            if [ "$debug" -eq 0 ]
+            then
+                $echoCmd >> "$debugFile"
+                $echoCmd "propertyFile: $propFile" >> "$debugFile"
+            fi
+            local propertyFileBasename=`basename $propFile |tr -d "\r"`
+            local imageFileStem=${propertyFileBasename%.properties}
+            if [ $i -eq 1 ] 
+            then
+                local findOptions="${findOptions} -name \"${imageFileStem}.*\" "
+            else
+                local findOptions="${findOptions} -o -name \"${imageFileStem}.*\" "
+            fi
+            local i=$((i + 1))
+        done
+        local findOptions="${findOptions} \\)"
+    
+        eval $findCmd $findOptions
+    else 
+        echo ""
+    fi
 }
 
 function clobberGeneratedImagesAndDirs {

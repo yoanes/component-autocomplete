@@ -8,7 +8,7 @@
 <%@ taglib prefix="logging" uri="/au/com/sensis/mobile/web/component/core/logging/logging.tld"%>
 
 <%@ attribute name="device" required="true"
-    type="au.com.sensis.wireless.common.volantis.devicerepository.api.Device"  
+    type="au.com.sensis.devicerepository.Device"  
     description="Device of the current user." %>
     
 <%@ attribute name="toObserve" required="true"

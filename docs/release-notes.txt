@@ -1,3 +1,13 @@
+==== Version 4.0.wurfl-snapshot-1 (tag: autocomplete_v4_0_wurfl-snapshot-1) ====
+
+Migrated to use WURFL based CRF 3.x.
+Removed any Volantis dependencies.
+Please see CRF release notes for further details about the wurfl migration.
+
+Upgrade Steps:
+
+None. Do not upgrade to this unless you want the wurfl based device repository.
+
 ==== Version 3.1.1 (tag: autocomplete_v3_1_2) ====
 
 Minor bug fix. Decode the query before sending them into the EMS

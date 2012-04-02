@@ -1,5 +1,0 @@
-mcs.devicerepository.filepath=/app/smtestapp/sandpit-test/autocomplete-component/devices/devices.mdpr
-mcs.policies.filepath=/app/smtestapp/sandpit-test/autocomplete-component/policies
-
-mcs.cache.policies=false
-#mcs.script.asset.path=/autocomplete-component-showcase/scripts/

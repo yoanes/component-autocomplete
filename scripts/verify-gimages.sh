@@ -3,7 +3,7 @@
 # Content Rendering Framework script for verifying that all candidate images for generating 
 # scaled images have been processed. If not, the script exits with a status code of 1.
 #
-# CRF Version: @CRFVERSION@
+# CRF Version: 3.0.0.30
 #
 # $Revision$
 #

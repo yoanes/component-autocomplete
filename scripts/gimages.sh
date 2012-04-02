@@ -2,7 +2,7 @@
 #
 # Content Rendering Framework script for generating scaled images.
 #
-# CRF Version: @CRFVERSION@
+# CRF Version: 3.0.0.30
 #
 # $Revision$
 #

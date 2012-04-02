@@ -6,10 +6,10 @@
 
     <config-path>comp/autocomplete</config-path>
     <groups>
-        <group name="android-os" expr="device.isA('Android-OS') or device.isA('Android-Emulator')" />
-        <group name="ipad" expr="device.isA('Apple-iPad')" />
-        <group name="autocompleteEnabled" expr="device.isA('Android-OS') 
-            or device.isA('Android-Emulator') or device.isA('Apple') or device.isA('PC')" />
+        <import name="android-os"/>
+        <import name="ipad" />
+        <group name="autocompleteEnabled" expr="inAnyGroup('android-os') 
+            or device.isA('Apple') or device.getPropertyAsString('custom.device.classification') eq 'pc'" />
         <default-group name="default" />
     </groups>
 
