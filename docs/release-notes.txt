@@ -1,4 +1,4 @@
-==== Version 4.0.wurfl-snapshot-1 (tag: autocomplete_v4_0_wurfl-snapshot-1) ====
+==== Version 4.0.0 (tag: autocomplete_v4_0_0) ====
 
 Migrated to use WURFL based CRF 3.x.
 Removed any Volantis dependencies.
